@@ -13,9 +13,9 @@ import { useRouter } from 'next/router';
 export default function PaymentSettings() {
   const { t } = useTranslation();
   const { locale } = useRouter();
-  const { settings, loading, error } = useSettingsQuery({
+  const { settings, loading, error } = {
     language: locale! as string,
-  });
+  };
 
   if (loading) return <Loader text={t('common:text-loading')} />;
   if (error) return <ErrorMessage message={error.message} />;

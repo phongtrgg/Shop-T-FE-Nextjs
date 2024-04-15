@@ -280,19 +280,19 @@ const OTPpopup = (props: any) => {
               />
             )}
 
-            <div className="flex">
+            <div className="flex items-center gap-16">
               <Button
-                className="mr-10 w-135"
+                className="bg-red-500 hover:bg-red-300 "
+                onClick={offTable}
+              >
+                {t('text-cancel')}
+              </Button>
+              <Button
+                className=" "
                 onClick={confirmHandler}
                 isLoading={isLoading}
               >
                 {`${changeOption ? 'Thay đổi' : t('text-submit-confirm')} `}
-              </Button>
-              <Button
-                className="bg-red-500 hover:bg-red-300 w-135"
-                onClick={offTable}
-              >
-                {t('text-cancel')}
               </Button>
             </div>
           </div>

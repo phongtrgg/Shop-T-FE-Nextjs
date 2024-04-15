@@ -30,6 +30,7 @@ import ErrorMessage from '@/components/ui/error-message';
 import { getOrderPaymentSummery } from '@/lib/get-order-payment-summery';
 import OrderOTP from '@/components/otp/otp-popup';
 import { useState } from 'react';
+import Image from '@/components/ui/image';
 type Props = {
   title: string;
   details: string | undefined;
@@ -104,6 +105,59 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
             action={setShowOTP}
           />
           <div className="bg-light px-6 pb-12 pt-9 dark:bg-dark-200 lg:px-8">
+            <div className="leading-1 my-10 ">
+              <h1 className="text-xl font-semibold my-5">
+                Để hoàn tất đơn hàng, quý khách vui lòng chuyển khoản theo nội
+                dung sau :
+              </h1>
+              <div className="flex  items-center justify-around border-solid border-2 rounded-md shadow bg-white py-6">
+                <div className="leading-1  flex flex-col gap-3 ">
+                  <div className="flex items-center justify-between gap-16">
+                    Ngân hàng :
+                    <span className="font-semibold mx-5 ">TECHCOMBANK</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-16">
+                    Số Tài Khoản :
+                    <span className="font-semibold text-red-500 text-lg mx-5">
+                      123456789
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-16">
+                    Chủ tài khoản :
+                    <span className="font-semibold mx-5">Tomiru</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-16">
+                    Số tiền :
+                    <span className="font-semibold mx-5 text-red-500 text-xl">
+                      {total}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-16">
+                    Nội dung :
+                    <span className="font-semibold  mx-5">
+                      {order?.tracking_number}
+                    </span>
+                  </div>
+                </div>
+                {/* <div>
+                  <Image
+                    src="/icons/tech.jpg"
+                    alt="tcb-img"
+                    width={`${100}`}
+                    height={`${100}`}
+                  />
+                </div> */}
+                <div>
+                  <Image
+                    src="/icons/tcbqr.jpg"
+                    alt="tcb-img"
+                    width={`${200}`}
+                    height={`${200}`}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* CARD */}
             <div className="mb-6 grid gap-4 sm:grid-cols-2 md:mb-12 lg:grid-cols-4">
               <Card
                 title={t('text-order-number')}
