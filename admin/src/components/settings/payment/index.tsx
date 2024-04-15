@@ -127,11 +127,12 @@ export default function PaymentSettingsForm({ settings }: IProps) {
   }
   useConfirmRedirectIfDirty({ isDirty });
   let paymentGateway = watch('paymentGateway');
-  let defaultPaymentGateway = watch('defaultPaymentGateway');
+  console.log(paymentGateway);
+  // let defaultPaymentGateway = watch('defaultPaymentGateway');
   let useEnableGateway = watch('useEnableGateway');
-  let checkAvailableDefaultGateway = paymentGateway?.some(
-    (item: any) => item?.name === defaultPaymentGateway?.name,
-  );
+  // let checkAvailableDefaultGateway = paymentGateway?.some(
+  //   (item: any) => item?.name === defaultPaymentGateway?.name,
+  // );
   // const isStripeActive = paymentGateway?.some(
   //   (payment) => payment?.name === 'stripe',
   // );
@@ -185,11 +186,11 @@ export default function PaymentSettingsForm({ settings }: IProps) {
                   options={PAYMENT_GATEWAY}
                   control={control}
                   name="paymentGateway"
-                  defaultItem={
-                    checkAvailableDefaultGateway
-                      ? defaultPaymentGateway?.name
-                      : ''
-                  }
+                  // defaultItem={
+                  //   checkAvailableDefaultGateway
+                  //     ? defaultPaymentGateway?.name
+                  //     : ''
+                  // }
                   disable={isEmpty(paymentGateway)}
                 />
               </div>

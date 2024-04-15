@@ -33,16 +33,12 @@ export enum StoreNoticeType {
 }
 
 export enum PaymentGateway {
-  STRIPE = 'STRIPE',
-  COD = 'CASH_ON_DELIVERY',
-  CASH = 'CASH',
-  FULL_WALLET_PAYMENT = 'FULL_WALLET_PAYMENT',
-  PAYPAL = 'PAYPAL',
-  RAZORPAY = 'RAZORPAY',
-  MOLLIE = 'MOLLIE',
-  PAYSTACK = 'PAYSTACK',
-  BITPAY = 'BITPAY',
-  COINBASE = 'COINBASE',
+  TOMXU = 'TOMXU',
+  COD = 'COD',
+  BANKING = 'BANKING',
+  MOMO = 'MOMO',
+  VNPAY = 'VNPAY',
+  MOCA = 'MOCA',
 }
 
 export enum ProductStatus {
