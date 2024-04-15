@@ -26,6 +26,7 @@ import { useSettings } from '@/data/settings';
 import { REVIEW_POPUP_MODAL_KEY } from '@/lib/constants';
 import Cookies from 'js-cookie';
 import { useMe } from '@/data/user';
+import { useEffect, useState } from 'react';
 type CartCheckoutProps = {
   fullName: any;
   phone: any;
@@ -110,7 +111,6 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       amount: totalPrice,
     },
   );
-
   // phone number field
   const { phoneNumber } = usePhoneInput();
   function createOrder() {
@@ -165,6 +165,15 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
     });
     Cookies.remove(REVIEW_POPUP_MODAL_KEY);
   }
+  const [isDisabled, setIsDisabled] = useState(true);
+  useEffect(() => {
+    if (fullName && phone && address) {
+      setIsDisabled(false);
+    }
+    if (!fullName || !phone || !address) {
+      setIsDisabled(true);
+    }
+  }, [fullName, phone, address]);
 
   return (
     <div className="mt-10 border-t border-light-400 bg-light pt-6 pb-7 dark:border-dark-400 dark:bg-dark-250 sm:bottom-0 sm:mt-12 sm:pt-8 sm:pb-9">
@@ -201,7 +210,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       </div>
 
       <Button
-        disabled={isLoading}
+        disabled={isLoading || isDisabled}
         isLoading={isLoading}
         onClick={createOrder}
         className="w-full md:h-[50px] md:text-sm"

@@ -20,12 +20,13 @@ import type { GetStaticProps } from 'next';
 import { toast } from 'react-hot-toast';
 import Input from '@/components/ui/forms/input';
 import Textarea from '@/components/ui/forms/textarea';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const CheckoutPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { me } = useMe();
   const { t } = useTranslation('common');
+
   const fullName = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
   const address = useRef<HTMLTextAreaElement>(null);
@@ -62,7 +63,56 @@ const CheckoutPage: NextPageWithLayout = () => {
       })),
     });
   }
+  const [typeError, setTypeError] = useState<any>({
+    fullName: false,
+    phone: false,
+    city: false,
+    district: false,
+    address: false,
+  });
+  const [errorMessage, setErrorMessage] = useState({
+    fullName: '',
+    phone: '',
+    city: '',
+    district: '',
+    address: '',
+  });
 
+  const handleBlur = () => {
+    if (fullName.current && fullName.current.value.trim() === '') {
+      setErrorMessage((prevState: any) => ({
+        ...prevState,
+        fullName: 'Vui lòng không để trống Họ Tên',
+      }));
+    } else {
+      setErrorMessage((prevState: any) => ({
+        ...prevState,
+        fullName: '',
+      }));
+    }
+    if (phone.current && phone.current.value.trim() === '') {
+      setErrorMessage((prevState: any) => ({
+        ...prevState,
+        phone: 'Vui lòng không để trống số điện thoại',
+      }));
+    } else {
+      setErrorMessage((prevState: any) => ({
+        ...prevState,
+        phone: '',
+      }));
+    }
+    if (address.current && address.current.value.trim() === '') {
+      setErrorMessage((prevState: any) => ({
+        ...prevState,
+        address: 'Vui lòng không để trống địa chỉ',
+      }));
+    } else {
+      setErrorMessage((prevState: any) => ({
+        ...prevState,
+        address: '',
+      }));
+    }
+  };
   return (
     <>
       <Seo
@@ -77,8 +127,18 @@ const CheckoutPage: NextPageWithLayout = () => {
               {t('text-checkout-title')}
             </h2>
             <div className="px-5 py-3 sm:py-4 sm:px-7 flex justify-between">
-              <Input placeholder="Họ và Tên" ref={fullName} />
-              <Input placeholder="Số điện thoại " ref={phone} />
+              <Input
+                placeholder="Họ và Tên"
+                onBlur={handleBlur}
+                ref={fullName}
+                error={errorMessage.fullName ? errorMessage.fullName : ''}
+              />
+              <Input
+                placeholder="Số điện thoại "
+                ref={phone}
+                onBlur={handleBlur}
+                error={errorMessage.phone ? errorMessage.phone : ''}
+              />
             </div>
             <div className="px-5 py-3 sm:py-4 sm:px-7 flex justify-between">
               <Input placeholder="Thành Phố " />
@@ -88,7 +148,9 @@ const CheckoutPage: NextPageWithLayout = () => {
               <Textarea
                 placeholder="Địa Chỉ Chi Tiết"
                 inputClassName="min-h-[75px]"
+                error={errorMessage.address ? errorMessage.address : ''}
                 ref={address}
+                onBlur={handleBlur}
               />
             </div>
           </div>
@@ -142,7 +204,7 @@ const CheckoutPage: NextPageWithLayout = () => {
             )}
             {!isEmpty && Boolean(verifiedResponse) && (
               <CartCheckout
-                fullName={fullName.current?.value}
+                fullName={fullName}
                 phone={phone.current?.value}
                 address={address.current?.value}
               />

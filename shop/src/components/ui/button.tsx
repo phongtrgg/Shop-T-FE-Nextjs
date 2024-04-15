@@ -24,7 +24,7 @@ const variantClasses = {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { className, isLoading, disabled, children, variant = 'solid', ...props },
-    ref
+    ref,
   ) => (
     <button
       ref={ref}
@@ -33,16 +33,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         isLoading || disabled
           ? 'pointer-events-none cursor-not-allowed'
           : 'pointer-events-auto cursor-pointer',
-        disabled ? 'opacity-70' : 'opacity-100',
+        disabled ? 'bg-gray-300' : 'opacity-100',
         variantClasses[variant],
-        className
+        className,
       )}
       {...props}
     >
       {isLoading && <SpinnerIcon className="h-auto w-5 animate-spin" />}
       {children}
     </button>
-  )
+  ),
 );
 
 Button.displayName = 'Button';
