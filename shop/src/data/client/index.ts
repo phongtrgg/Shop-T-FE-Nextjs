@@ -60,6 +60,8 @@ import type {
   VerifyForgetPasswordTokenInput,
   Wishlist,
   WishlistQueryOptions,
+  PaymentTomxu,
+  GetPaymentOTP,
 } from '@/types';
 import { FollowedShopsQueryOptions } from '@/types';
 import { API_ENDPOINTS } from './endpoints';
@@ -378,6 +380,12 @@ class Client {
   userTomxu = {
     getTomxu: (input: any) =>
       HttpClientPayment.post<string>(API_ENDPOINTS.WALLET_BALANCE, input),
+  };
+  payment = {
+    post: (input: PaymentTomxu) =>
+      HttpClientPayment.post<string>(API_ENDPOINTS.PAYMENT, input),
+    sendOTP: (input: GetPaymentOTP) =>
+      HttpClientPayment.post<string>(API_ENDPOINTS.OTP, input),
   };
 }
 

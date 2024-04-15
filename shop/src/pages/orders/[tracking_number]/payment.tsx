@@ -28,7 +28,8 @@ import { PageLoader } from '@/components/ui/loader/spinner/spinner';
 import { Order } from '@/types';
 import ErrorMessage from '@/components/ui/error-message';
 import { getOrderPaymentSummery } from '@/lib/get-order-payment-summery';
-
+import OrderOTP from '@/components/otp/otp-popup';
+import { useState } from 'react';
 type Props = {
   title: string;
   details: string | undefined;
@@ -66,6 +67,7 @@ interface OrderViewProps {
 const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
   const { t } = useTranslation('common');
   const { width, height } = useWindowSize();
+  const [showOTP, setShowOTP] = useState(false);
   const { resetCart } = useCart();
   useEffect(() => {
     resetCart();
@@ -83,15 +85,23 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
 
   const { price: amountDue } = usePrice({ amount: amount_due });
   const { price: gatewayPayment } = usePrice({ amount: gateway_payment });
-
   return (
     <div className="p-4 sm:p-8">
+      {showOTP && order?.payment_gateway === 'TOMXU' && (
+        <OrderOTP
+          showOTP={setShowOTP}
+          id={order?.tracking_number}
+          email={order?.customer.email}
+          order={order}
+        />
+      )}
       <div className="mx-auto w-full max-w-screen-lg">
         <div className="relative overflow-hidden rounded">
           <OrderViewHeader
             order={order}
             buttonSize="small"
             loading={loadingStatus}
+            action={setShowOTP}
           />
           <div className="bg-light px-6 pb-12 pt-9 dark:bg-dark-200 lg:px-8">
             <div className="mb-6 grid gap-4 sm:grid-cols-2 md:mb-12 lg:grid-cols-4">
@@ -133,7 +143,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                     title={t('text-total-item')}
                     details={formatString(
                       order?.products?.length,
-                      t('text-item')
+                      t('text-item'),
                     )}
                   />
                   <Listitem title={t('text-sub-total')} details={sub_total} />
@@ -248,7 +258,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
     [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions),
   );
 
   return {
