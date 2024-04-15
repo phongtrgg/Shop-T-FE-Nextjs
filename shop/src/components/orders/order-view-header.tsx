@@ -7,12 +7,13 @@ import { isPaymentPending } from '@/lib/is-payment-pending';
 import { SpinnerLoader } from '@/components/ui/loader/spinner/spinner';
 import { useSettings } from '@/data/settings';
 import ChangeGateway from '../payment/gateway-modal/change-gateway';
-
+import Button from '@/components/ui/button';
 interface OrderViewHeaderProps {
   order: any;
   wrapperClassName?: string;
   buttonSize?: 'big' | 'medium' | 'small';
   loading?: boolean;
+  action?: any;
 }
 
 export default function OrderViewHeader({
@@ -20,13 +21,14 @@ export default function OrderViewHeader({
   wrapperClassName = 'lg:px-8 lg:py-3 p-6',
   buttonSize = 'medium',
   loading = false,
+  action,
 }: OrderViewHeaderProps) {
   const { settings } = useSettings();
   const { t } = useTranslation('common');
   const isPaymentActionPending = isPaymentPending(
     order?.payment_gateway,
     order?.order_status,
-    order?.payment_status
+    order?.payment_status,
   );
 
   return (
@@ -72,10 +74,22 @@ export default function OrderViewHeader({
         </div>
         {isPaymentActionPending && order?.children?.length > 0 ? (
           <span className="order-2 mt-5 w-full max-w-full shrink-0 basis-full sm:order-1 md:mt-0 md:w-auto md:max-w-none md:basis-auto md:ltr:ml-auto md:rtl:mr-auto">
-            <PayNowButton
-              tracking_number={order?.tracking_number}
-              order={order}
-            />
+            {order?.payment_gateway !== 'TOMXU' && (
+              <PayNowButton
+                tracking_number={order?.tracking_number}
+                order={order}
+              />
+            )}
+            {order?.payment_gateway === 'TOMXU' && (
+              <Button
+                className="w-full text-13px md:px-3"
+                onClick={() => {
+                  action(true);
+                }}
+              >
+                {t('text-pay-now')}
+              </Button>
+            )}
           </span>
         ) : null}
         {settings?.paymentGateway?.length > 1 && isPaymentActionPending && (

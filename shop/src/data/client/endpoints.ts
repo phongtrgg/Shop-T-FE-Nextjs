@@ -44,4 +44,6 @@ export const API_ENDPOINTS = {
   FAQS: '/faqs',
   USERS_SUBSCRIBE_TO_NEWSLETTER: '/subscribe-to-newsletter',
   WALLET_BALANCE: '/balance-tomxu',
+  PAYMENT: '/payment/tomxu',
+  OTP: '/request-otp',
 };

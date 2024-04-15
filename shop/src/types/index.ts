@@ -218,6 +218,7 @@ export interface User {
   updated_at: string;
   last_order: Order;
   email?: string;
+  default_otp_type?: any;
 }
 
 export interface UpdateProfileInput {
@@ -505,6 +506,7 @@ export interface Order {
   };
   sales_tax: number;
   reviews?: Review[];
+  customer: any;
 }
 
 export interface DigitalFile {
@@ -779,4 +781,31 @@ export interface GoogleMapLocation {
   zip?: string;
   formattedAddress?: string;
   formatted_address?: string;
+}
+export interface PaymentTomxu {
+  from_id: number | string;
+  from_user_email: string;
+  total_tomxu: number;
+  parent_id?: any;
+  customer_contact: number;
+  otp: number | string;
+  type_otp: string;
+  tracking_number: number;
+  secret_token: string;
+  products: {
+    product_id: number;
+    quantity: number;
+    tomxu: number;
+    tomxu_subtotal: number;
+    shop_id: number | string;
+    product_name: string;
+  };
+}
+export interface GetPaymentOTP {
+  user_id: number | string;
+  user_email: string;
+  type_otp: string;
+  total_tomxu?: number;
+  secret_token: string;
+  method: string;
 }
