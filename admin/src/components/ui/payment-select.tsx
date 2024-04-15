@@ -16,6 +16,12 @@ import { PaymongoIcon } from '@/components/icons/payment-gateways/paymongo';
 import { FlutterwaveIcon } from '@/components/icons/payment-gateways/flutterwave';
 import BitpayIcon from '@/components/icons/payment-gateways/bitpay';
 import CoinbaseIcon from '@/components/icons/payment-gateways/coinbase';
+import { TomxuIcon } from '../icons/payment-gateways/tomxu';
+import { BankingIcon } from '../icons/payment-gateways/banking';
+import { CodIcon } from '../icons/payment-gateways/cod';
+import { MocaIcon } from '../icons/payment-gateways/moca';
+import { MomoIcon } from '../icons/payment-gateways/momo';
+import { VnpayIcon } from '../icons/payment-gateways/vnpay';
 
 interface PaymentSelectProps {
   options: OptionType[];
@@ -44,19 +50,25 @@ const PaymentMethodCard = ({
   disable?: boolean;
 }) => {
   const icon: any = {
-    stripe: <StripeIcon />,
-    paypal: <PayPalIcon />,
-    razorpay: <RazorPayIcon />,
-    mollie: <MollieIcon />,
-    sslcommerz: <SSLComerz />,
-    paystack: <PayStack />,
-    iyzico: <IyzicoIcon />,
-    xendit: <XenditIcon />,
-    bkash: <BkashIcon />,
-    paymongo: <PaymongoIcon />,
-    flutterwave: <FlutterwaveIcon />,
-    bitpay: <BitpayIcon />,
-    coinbase: <CoinbaseIcon />,
+    tomxu: <TomxuIcon />,
+    cod: <CodIcon />,
+    banking: <BankingIcon />,
+    momo: <MomoIcon />,
+    vnpay: <VnpayIcon />,
+    moca: <MocaIcon />,
+    // stripe: <StripeIcon />,
+    // paypal: <PayPalIcon />,
+    // razorpay: <RazorPayIcon />,
+    // mollie: <MollieIcon />,
+    // sslcommerz: <SSLComerz />,
+    // paystack: <PayStack />,
+    // iyzico: <IyzicoIcon />,
+    // xendit: <XenditIcon />,
+    // bkash: <BkashIcon />,
+    // paymongo: <PaymongoIcon />,
+    // flutterwave: <FlutterwaveIcon />,
+    // bitpay: <BitpayIcon />,
+    // coinbase: <CoinbaseIcon />,
   };
   return (
     <label

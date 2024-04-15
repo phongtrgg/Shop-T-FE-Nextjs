@@ -16,6 +16,12 @@ import { PaymongoIcon } from '@/components/icons/payment-gateways/paymongo';
 import { FlutterwaveIcon } from '@/components/icons/payment-gateways/flutterwave';
 import BitpayIcon from '@/components/icons/payment-gateways/bitpay';
 import CoinbaseIcon from '@/components/icons/payment-gateways/coinbase';
+import { TomxuIcon } from '@/components/icons/payment-gateways/tomxu';
+import { CodIcon } from '@/components/icons/payment-gateways/cod';
+import { BankingIcon } from '@/components/icons/payment-gateways/banking';
+import { MomoIcon } from '@/components/icons/payment-gateways/momo';
+import { VnpayIcon } from '@/components/icons/payment-gateways/vnpay';
+import { MocaIcon } from '@/components/icons/payment-gateways/moca';
 
 interface WebHookURLProps {
   gateway: gatewayType;
@@ -31,19 +37,26 @@ const WebHookURL = ({ gateway }: WebHookURLProps) => {
   const [isCopied, setCopied] = useState(false);
 
   const icon: any = {
-    stripe: <StripeIcon className="h-4 w-auto" />,
-    paypal: <PayPalIcon className="h-4 w-auto" />,
-    razorpay: <RazorPayIcon className="h-4 w-auto" />,
-    mollie: <MollieIcon className="h-4 w-auto" />,
-    sslcommerz: <SSLComerz className="h-4 w-auto" />,
-    paystack: <PayStack className="h-4 w-auto" />,
-    iyzico: <IyzicoIcon className="h-4 w-auto" />,
-    xendit: <XenditIcon className="h-4 w-auto" />,
-    bkash: <BkashIcon className="h-4 w-auto" />,
-    paymongo: <PaymongoIcon className="h-4 w-auto" />,
-    flutterwave: <FlutterwaveIcon className="h-4 w-auto" />,
-    coinbase: <CoinbaseIcon className="h-8 w-auto" />,
-    bitpay: <BitpayIcon className="h-4 w-auto" />,
+    tomxu: <TomxuIcon />,
+    cod: <CodIcon />,
+    banking: <BankingIcon />,
+    momo: <MomoIcon />,
+    vnpay: <VnpayIcon />,
+    moca: <MocaIcon />,
+
+    // stripe: <StripeIcon className="h-4 w-auto" />,
+    // paypal: <PayPalIcon className="h-4 w-auto" />,
+    // razorpay: <RazorPayIcon className="h-4 w-auto" />,
+    // mollie: <MollieIcon className="h-4 w-auto" />,
+    // sslcommerz: <SSLComerz className="h-4 w-auto" />,
+    // paystack: <PayStack className="h-4 w-auto" />,
+    // iyzico: <IyzicoIcon className="h-4 w-auto" />,
+    // xendit: <XenditIcon className="h-4 w-auto" />,
+    // bkash: <BkashIcon className="h-4 w-auto" />,
+    // paymongo: <PaymongoIcon className="h-4 w-auto" />,
+    // flutterwave: <FlutterwaveIcon className="h-4 w-auto" />,
+    // coinbase: <CoinbaseIcon className="h-8 w-auto" />,
+    // bitpay: <BitpayIcon className="h-4 w-auto" />,
   };
   const url = `${
     process.env.NEXT_PUBLIC_REST_API_ENDPOINT

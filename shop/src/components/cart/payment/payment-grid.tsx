@@ -90,7 +90,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
   const [availableGateway, setAvailableGateway] = useState(
     settings?.paymentGateway || [],
   );
-  console.log(availableGateway);
+
   // FixME
   // @ts-ignore
   const AVAILABLE_PAYMENT_METHODS_MAP: Record<
@@ -169,7 +169,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
       width: 100,
       height: 52,
     },
-    CASH: {
+    COD: {
       name: 'Cash',
       value: PaymentGateway.CASH,
       icon: <CashIcon className="w-32" />,
@@ -180,6 +180,42 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
     },
     BANKING: {
       name: 'Banking',
+      value: PaymentGateway.BANKING,
+      icon: <BankingIcon className="w-32" />,
+      darkIcon: <BankingIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    MOMO: {
+      name: 'Momo',
+      value: PaymentGateway.BANKING,
+      icon: <BankingIcon className="w-32" />,
+      darkIcon: <BankingIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    MOCA: {
+      name: 'Moca',
+      value: PaymentGateway.BANKING,
+      icon: <BankingIcon className="w-32" />,
+      darkIcon: <BankingIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    VNPAY: {
+      name: 'vnpay',
+      value: PaymentGateway.BANKING,
+      icon: <BankingIcon className="w-32" />,
+      darkIcon: <BankingIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    CASH: {
+      name: 'vnpay',
       value: PaymentGateway.BANKING,
       icon: <BankingIcon className="w-32" />,
       darkIcon: <BankingIcon className="w-32" />,

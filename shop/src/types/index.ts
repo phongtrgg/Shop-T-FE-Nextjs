@@ -357,8 +357,12 @@ export enum PaymentGateway {
   BITPAY = 'BITPAY',
   COINBASE = 'COINBASE',
   TOMXU = 'TOMXU',
-  CASH = 'CASH',
+  COD = 'COD',
   BANKING = 'BANKING',
+  MOMO = 'MOMO',
+  MOCA = 'MOCA',
+  VNPAY = 'VNPAY',
+  CASH = 'CASH',
 }
 
 export enum OrderStatus {
