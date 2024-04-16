@@ -33,7 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         isLoading || disabled
           ? 'pointer-events-none cursor-not-allowed'
           : 'pointer-events-auto cursor-pointer',
-        disabled ? 'bg-gray-300' : 'opacity-100',
+        disabled ? 'opacity-70' : 'opacity-100',
         variantClasses[variant],
         className,
       )}

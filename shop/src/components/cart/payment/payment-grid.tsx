@@ -24,6 +24,9 @@ import CoinbaseIcon from '@/components/icons/payment-gateways/coinbase';
 import { TomxuIcon } from '@/components/icons/payment-gateways/tomxu';
 import { CashIcon } from '@/components/icons/payment-gateways/cash';
 import { BankingIcon } from '@/components/icons/payment-gateways/banking';
+import { MomoIcon } from '@/components/icons/payment-gateways/momo';
+import { MocaIcon } from '@/components/icons/payment-gateways/moca';
+import { VnpayIcon } from '@/components/icons/payment-gateways/vnpay';
 
 interface PaymentMethodInformation {
   name: string;
@@ -170,8 +173,8 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
       height: 52,
     },
     COD: {
-      name: 'Cash',
-      value: PaymentGateway.CASH,
+      name: 'Cod',
+      value: PaymentGateway.COD,
       icon: <CashIcon className="w-32" />,
       darkIcon: <CashIcon className="w-32" />,
       component: PaymentOnline,
@@ -189,18 +192,18 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
     },
     MOMO: {
       name: 'Momo',
-      value: PaymentGateway.BANKING,
-      icon: <BankingIcon className="w-32" />,
-      darkIcon: <BankingIcon className="w-32" />,
+      value: PaymentGateway.MOMO,
+      icon: <MomoIcon className="w-32" />,
+      darkIcon: <MomoIcon className="w-32" />,
       component: PaymentOnline,
       width: 100,
       height: 52,
     },
     MOCA: {
       name: 'Moca',
-      value: PaymentGateway.BANKING,
-      icon: <BankingIcon className="w-32" />,
-      darkIcon: <BankingIcon className="w-32" />,
+      value: PaymentGateway.MOCA,
+      icon: <MocaIcon className="w-32" />,
+      darkIcon: <MocaIcon className="w-32" />,
       component: PaymentOnline,
       width: 100,
       height: 52,
@@ -208,17 +211,8 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
     VNPAY: {
       name: 'vnpay',
       value: PaymentGateway.BANKING,
-      icon: <BankingIcon className="w-32" />,
-      darkIcon: <BankingIcon className="w-32" />,
-      component: PaymentOnline,
-      width: 100,
-      height: 52,
-    },
-    CASH: {
-      name: 'vnpay',
-      value: PaymentGateway.BANKING,
-      icon: <BankingIcon className="w-32" />,
-      darkIcon: <BankingIcon className="w-32" />,
+      icon: <VnpayIcon className="w-32" />,
+      darkIcon: <VnpayIcon className="w-32" />,
       component: PaymentOnline,
       width: 100,
       height: 52,

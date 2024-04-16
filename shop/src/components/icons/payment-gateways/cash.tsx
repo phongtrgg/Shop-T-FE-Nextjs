@@ -11,7 +11,7 @@ export const CashIcon = ({ ...props }) => {
         width={`${35}`}
         height={`${35}`}
       ></Image>
-      <span className="text-2xl font-bold ">CASH</span>
+      <span className="text-2xl font-bold ">COD</span>
     </div>
   );
 };
