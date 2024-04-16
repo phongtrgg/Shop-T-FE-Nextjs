@@ -717,6 +717,7 @@ export interface CreateQuestionInput {
 }
 
 export interface PaymentIntentCollection {
+  [x: string]: any;
   tracking_number?: string;
   payment_intent_info?: PaymentIntentInfo;
   payment_gateway?: string;

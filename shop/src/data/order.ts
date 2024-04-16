@@ -134,6 +134,7 @@ export function useGetPaymentIntent({
     {
       enabled: false,
       onSuccess: (item) => {
+        console.log('item', item);
         let data: any = '';
         if (isArray(item)) {
           data = { ...item };
@@ -152,9 +153,12 @@ export function useGetPaymentIntent({
           });
         }
       },
+      onError: (error) => {
+        console.log('error', error);
+      },
     },
   );
-
+  console.log(data);
   return {
     data,
     getPaymentIntentQuery: refetch,

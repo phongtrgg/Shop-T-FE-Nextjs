@@ -28,7 +28,8 @@ import { BankingIcon } from '@/components/icons/payment-gateways/banking';
 import { MocaIcon } from '@/components/icons/payment-gateways/moca';
 import { MomoIcon } from '@/components/icons/payment-gateways/momo';
 import { VnpayIcon } from '@/components/icons/payment-gateways/vnpay';
-
+import { useModalAction } from '@/components/modal-views/context';
+import { toast } from 'react-hot-toast';
 interface IProps {
   theme?: string;
   settings: any;
@@ -252,12 +253,13 @@ const PaymentGateways: React.FC<IProps> = ({
 };
 
 const GatewayModal = () => {
+  const { openModal, closeModal } = useModalAction();
   const {
     data: { order },
   } = useModalState();
   const [gateway, setGateway] = useAtom(paymentGatewayAtom);
   const { settings } = useSettings();
-  const { isLoading, getPaymentIntentQuery } = useGetPaymentIntent({
+  const { isLoading, getPaymentIntentQuery, data } = useGetPaymentIntent({
     tracking_number: order?.tracking_number as string,
     payment_gateway: gateway,
     recall_gateway: false as boolean,
@@ -265,7 +267,16 @@ const GatewayModal = () => {
   });
 
   const handleSubmit = async () => {
+    console.log('truoc', data);
     await getPaymentIntentQuery();
+    console.log('data', data);
+    if (data) {
+      toast.success(
+        'Đã đổi phương thanh toán thành ' + data.order.payment_gateway,
+      );
+    }
+
+    closeModal();
   };
 
   // check and set disabled already chosen gateway
