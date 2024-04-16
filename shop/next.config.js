@@ -23,6 +23,7 @@ module.exports = {
       '192.168.102.22',
       'tomirupdf.sgp1.vultrobjects.com',
       'tomirumedia.sgp1.vultrobjects.com',
+      'stcd02206177151.cloud.edgevnpay.vn',
     ],
   },
   ...(process.env.APPLICATION_MODE === 'production' && {
