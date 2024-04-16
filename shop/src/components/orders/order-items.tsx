@@ -24,7 +24,7 @@ const OrderItemList = (_: any, record: any) => {
   let name = record.name;
   if (record?.pivot?.variation_option_id) {
     const variationTitle = record?.variation_options?.find(
-      (vo: any) => vo?.id === record?.pivot?.variation_option_id
+      (vo: any) => vo?.id === record?.pivot?.variation_option_id,
     )['title'];
     name = `${name} - ${variationTitle}`;
   }
@@ -74,7 +74,7 @@ export const OrderItems = ({
   const { t } = useTranslation('common');
   const { alignLeft, alignRight } = useIsRTL();
   const { openModal } = useModalAction();
-
+  console.log(products);
   const getStatus = status === PaymentStatus.SUCCESS;
 
   const { mutate } = useMutation(client.orders.generateDownloadLink, {
@@ -125,37 +125,52 @@ export const OrderItems = ({
       },
     },
     {
+      title: t('text-unit-price'),
+
+      dataIndex: 'pivot',
+      key: 'pivot',
+      align: 'center',
+      width: 100,
+      render: function renderUnitPrice(pivot: any) {
+        const { price } = usePrice({
+          amount: pivot?.unit_price,
+        });
+        return <p className="text-base">{price}</p>;
+      },
+    },
+    {
+      title: t('text-sum-price'),
+      dataIndex: 'pivot',
+      key: 'pivot',
+      align: 'center',
+      width: 100,
+      render: function renderTotalPrice(pivot: any) {
+        const { price } = usePrice({
+          amount: pivot.subtotal,
+        });
+        return <p className="text-base">{price}</p>;
+      },
+    },
+    {
       title: ' ',
       dataIndex: '',
       align: alignLeft,
-      width: 250,
+      width: 120,
       render: function RenderReview(_: any, record: any) {
         return (
           <div className="flex items-center justify-end gap-4">
-            <button
-              className={`flex shrink-0 items-center font-semibold text-brand transition-all duration-200 hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:bg-transparent sm:py-3 sm:px-5 sm:dark:border-dark-600 ${
+            <Button
+              className={`flex shrink-0 items-center font-semibold transition-all  hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:dark:border-dark-600 ${
                 getStatus
                   ? ''
                   : 'pointer-events-none cursor-not-allowed opacity-70'
               }`}
-              onClick={() => (getStatus ? openReviewModal(record) : null)}
               disabled={getStatus ? false : true}
+              onClick={() => (getStatus ? openReviewModal(record) : null)}
             >
               {getReview(record?.my_review, record?.pivot?.order_id)
                 ? t('text-update-review')
                 : t('text-write-review')}
-            </button>
-            <Button
-              onClick={() =>
-                getStatus
-                  ? mutate(record?.digital_file?.fileable_id, record?.name)
-                  : null
-              }
-              disabled={getStatus ? false : true}
-              className="shrink-0"
-            >
-              <DownloadIcon className="h-auto w-4" />
-              {t('text-download')}
             </Button>
           </div>
         );

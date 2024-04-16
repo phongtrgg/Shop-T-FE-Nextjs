@@ -26,7 +26,7 @@ const ProgressBox: React.FC<ProgressProps> = ({
               styles.progress_wrapper,
               index <= filledIndex
                 ? `${styles.checked} dark:text-dark-base`
-                : ''
+                : '',
             )}
           >
             <div
@@ -48,7 +48,7 @@ const ProgressBox: React.FC<ProgressProps> = ({
               'flex flex-col items-start ltr:ml-4 rtl:mr-4',
               index <= filledIndex
                 ? `${styles.checked} text-black dark:text-light`
-                : ''
+                : '',
             )}
           >
             {item && (

@@ -20,17 +20,17 @@ import { PaymentStatus } from '@/types';
 // ];
 
 export const ORDER_STATUS = [
-  { name: 'Order Pending', status: 'order-pending', serial: 1 },
-  { name: 'Order Completed', status: 'order-completed', serial: 2 },
-  { name: 'Order Cancelled', status: 'order-cancelled', serial: 2 },
-  { name: 'Order Refunded', status: 'order-refunded', serial: 2 },
-  { name: 'Order Failed', status: 'order-failed', serial: 2 },
+  { name: 'Đơn hàng đang chờ xử lý', status: 'order-pending', serial: 1 },
+  { name: 'Đơn hàng đã hoàn thành', status: 'order-completed', serial: 2 },
+  { name: 'Đơn hàng đã huỷ', status: 'order-cancelled', serial: 2 },
+  { name: 'Đơn hàng đã hoàn tiền', status: 'order-refunded', serial: 2 },
+  { name: 'Đơn hàng thất bại ', status: 'order-failed', serial: 2 },
 ];
 
 export const filterOrderStatus = (
   orderStatus: any[],
   paymentStatus: PaymentStatus,
-  currentStatusIndex: number
+  currentStatusIndex: number,
 ) => {
   if ([PaymentStatus.SUCCESS].includes(paymentStatus)) {
     return currentStatusIndex > 1

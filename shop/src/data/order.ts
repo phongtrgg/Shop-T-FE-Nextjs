@@ -35,7 +35,7 @@ export function useOrders(options?: OrderQueryOptions) {
     {
       getNextPageParam: ({ current_page, last_page }) =>
         last_page > current_page && { page: current_page + 1 },
-    }
+    },
   );
   function handleLoadMore() {
     fetchNextPage();
@@ -71,7 +71,7 @@ export function useDownloadableProductOrders(options?: OrderQueryOptions) {
     {
       getNextPageParam: ({ current_page, last_page }) =>
         last_page > current_page && { page: current_page + 1 },
-    }
+    },
   );
   function handleLoadMore() {
     fetchNextPage();
@@ -94,7 +94,7 @@ export function useOrder({ tracking_number }: { tracking_number: string }) {
   >(
     [API_ENDPOINTS.ORDERS, tracking_number],
     () => client.orders.get(tracking_number),
-    { refetchOnWindowFocus: false }
+    { refetchOnWindowFocus: false },
   );
   return {
     order: data,
@@ -152,7 +152,7 @@ export function useGetPaymentIntent({
           });
         }
       },
-    }
+    },
   );
 
   return {
@@ -179,7 +179,7 @@ export function useOrderPayment() {
         }: any = error ?? {};
         toast.error(data?.message);
       },
-    }
+    },
   );
 
   function formatOrderInput(input: CreateOrderPaymentInput) {

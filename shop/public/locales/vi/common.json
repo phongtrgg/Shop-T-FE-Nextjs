@@ -354,7 +354,7 @@
 
   "text-payment-status": "Tình trạng thanh toán",
   "insufficient_funds": "Thẻ của bạn không đủ tiền.",
-  "order-pending": "Đơn hàng đang chờ sử lý",
+  "order-pending": "Đơn hàng đang chờ Xử lý",
   "order-processing": "Xử lý đơn hàng",
   "order-completed": "Đặt hàng thành công",
   "order-cancelled": "Đơn hàng đã bị hủy",
