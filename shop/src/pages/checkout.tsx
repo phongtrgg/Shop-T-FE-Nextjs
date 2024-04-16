@@ -35,17 +35,6 @@ const CheckoutPage: NextPageWithLayout = () => {
   const gmail = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
   const address = useRef<HTMLTextAreaElement>(null);
-
-  if (phone.current) {
-    phone.current.value = String(phoneValue);
-  }
-  if (gmail.current) {
-    gmail.current.value = userGmail;
-  }
-  if (fullName.current) {
-    fullName.current.value = String(userName);
-  }
-
   const {
     items,
     total,
@@ -54,6 +43,18 @@ const CheckoutPage: NextPageWithLayout = () => {
     setVerifiedResponse,
     verifiedResponse,
   } = useCart();
+  useEffect(() => {
+    if (!isEmpty && Boolean(verifiedResponse) && phone.current) {
+      phone.current.value = String(phoneValue);
+    }
+    if (!isEmpty && Boolean(verifiedResponse) && gmail.current) {
+      gmail.current.value = userGmail;
+    }
+    if (!isEmpty && Boolean(verifiedResponse) && fullName.current) {
+      fullName.current.value = String(userName);
+    }
+  }, [isEmpty, verifiedResponse]);
+
   const { price: totalPrice } = usePrice({
     amount: total,
   });
