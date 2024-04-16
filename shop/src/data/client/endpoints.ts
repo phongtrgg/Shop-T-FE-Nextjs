@@ -46,4 +46,5 @@ export const API_ENDPOINTS = {
   WALLET_BALANCE: '/balance-tomxu',
   PAYMENT: '/payment/tomxu',
   OTP: '/request-otp',
+  ACCOUNT: '/account',
 };

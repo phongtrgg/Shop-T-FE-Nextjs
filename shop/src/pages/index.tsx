@@ -12,10 +12,13 @@ import { useRouter } from 'next/router';
 import Seo from '@/layouts/_seo';
 import routes from '@/config/routes';
 import client from '@/data/client';
-import { dehydrate, QueryClient } from 'react-query';
+import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { API_ENDPOINTS } from '@/data/client/endpoints';
 import CategoryFilter from '@/components/product/category-filter';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import useAuth from '@/components/auth/use-auth';
+import { setAuthCredentials } from '@/data/client/token.utils';
+import { useState, useEffect } from 'react';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
@@ -74,6 +77,31 @@ function Products() {
 
 // TODO: SEO text gulo translation ready hobe kina? r seo text gulo static thakbe or dynamic?
 const Home: NextPageWithLayout = () => {
+  const { authorize } = useAuth();
+  const { query, push } = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
+  const tokenApp = query.tokenapp as string;
+  const hashTokenShop = query.hashtokenshop as string;
+  const { data, isLoading, error } = useQuery<any>(
+    [API_ENDPOINTS.ACCOUNT, { tokenApp, hashTokenShop }],
+    () =>
+      tokenApp &&
+      hashTokenShop &&
+      client.users.autoLogin({ tokenApp, hashTokenShop }),
+  );
+  useEffect(() => {
+    if (data && data.tokenShop) {
+      authorize(data.tokenShop);
+      setAuthCredentials(data.tokenShop, 'customers');
+      setIsLogin(true);
+    }
+  }, [data, tokenApp, hashTokenShop]);
+
+  useEffect(() => {
+    if (isLogin) {
+      push('/');
+    }
+  }, [isLogin]);
   return (
     <>
       <Seo

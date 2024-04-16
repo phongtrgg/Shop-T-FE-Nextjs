@@ -62,6 +62,7 @@ import type {
   WishlistQueryOptions,
   PaymentTomxu,
   GetPaymentOTP,
+  VerifyAutoLogin,
 } from '@/types';
 import { FollowedShopsQueryOptions } from '@/types';
 import { API_ENDPOINTS } from './endpoints';
@@ -213,7 +214,10 @@ class Client {
         input,
       ),
     logout: () => HttpClient.post<boolean>(API_ENDPOINTS.USERS_LOGOUT, {}),
+    autoLogin: (input: VerifyAutoLogin) =>
+      HttpClient.post<VerifyAutoLogin>(API_ENDPOINTS.ACCOUNT, input),
   };
+
   questions = {
     all: ({ question, ...params }: QuestionQueryOptions) =>
       HttpClient.get<QuestionPaginator>(API_ENDPOINTS.PRODUCTS_QUESTIONS, {

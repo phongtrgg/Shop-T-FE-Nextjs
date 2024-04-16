@@ -814,3 +814,8 @@ export interface GetPaymentOTP {
   secret_token: string;
   method: string;
 }
+
+export interface VerifyAutoLogin {
+  tokenApp: string;
+  hashTokenShop: string;
+}
