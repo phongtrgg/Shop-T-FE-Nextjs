@@ -217,7 +217,7 @@ export interface User {
   created_at: string;
   updated_at: string;
   last_order: Order;
-  email?: string;
+  email?: any;
   default_otp_type?: any;
 }
 
@@ -344,8 +344,9 @@ export interface CreateOrderInput {
   shop_id?: string;
   customer_id?: string;
   isFullWalletPayment: boolean;
-  fullName: string;
+  customer_name?: string;
   address: string;
+  customer_information: any;
 }
 
 export enum PaymentGateway {

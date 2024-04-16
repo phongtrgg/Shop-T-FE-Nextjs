@@ -40,6 +40,7 @@ export default function Header({
   const { settings } = useSettings();
   useSwapBodyClassOnScrollDirection();
   const [isScrolling] = useAtom(checkIsScrollingStart);
+  const router = useRouter();
   return (
     <>
       {width >= RESPONSIVE_WIDTH && underMaintenanceIsComing && !isScrolling ? (
@@ -66,8 +67,15 @@ export default function Header({
               className="hidden sm:flex"
             />
           )}
-          <Logo />
-          <h1 className="font-bold text-2xl">TOMIRU</h1>
+          <div
+            className="flex justify-center"
+            onClick={() => {
+              router.push('/');
+            }}
+          >
+            <Logo />
+            <h1 className="font-bold text-2xl mt-1 cursor-pointer">TOMIRU</h1>
+          </div>
         </div>
         <div className="relative flex items-center gap-5 pr-0.5 xs:gap-6 sm:gap-7">
           <SearchButton className="hidden sm:flex" />

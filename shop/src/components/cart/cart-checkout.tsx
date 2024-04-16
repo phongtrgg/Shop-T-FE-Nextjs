@@ -28,14 +28,16 @@ import Cookies from 'js-cookie';
 import { useMe } from '@/data/user';
 import { useEffect, useState } from 'react';
 type CartCheckoutProps = {
-  fullName: any;
+  customer_name: any;
   phone: any;
   address: any;
+  email: any;
 };
 const CartCheckout: React.FC<CartCheckoutProps> = ({
-  fullName,
+  customer_name,
   phone,
   address,
+  email,
 }) => {
   const { settings } = useSettings();
   const router = useRouter();
@@ -160,20 +162,25 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       ...(token && { token }),
       sales_tax: verifiedResponse?.total_tax ?? 0,
       customer_contact: phone ? phone : defaultPhoneNumber,
-      fullName,
+      customer_information: {
+        customer_name,
+        customer_contact: phone ? phone : defaultPhoneNumber,
+        address,
+        email,
+      },
       address,
     });
     Cookies.remove(REVIEW_POPUP_MODAL_KEY);
   }
   const [isDisabled, setIsDisabled] = useState(true);
   useEffect(() => {
-    if (fullName && phone && address) {
+    if (customer_name && phone && address && email) {
       setIsDisabled(false);
     }
-    if (!fullName || !phone || !address) {
+    if (!customer_name || !phone || !address || !email) {
       setIsDisabled(true);
     }
-  }, [fullName, phone, address]);
+  }, [customer_name, phone, address, email]);
 
   return (
     <div className="mt-10 border-t border-light-400 bg-light pt-6 pb-7 dark:border-dark-400 dark:bg-dark-250 sm:bottom-0 sm:mt-12 sm:pt-8 sm:pb-9">

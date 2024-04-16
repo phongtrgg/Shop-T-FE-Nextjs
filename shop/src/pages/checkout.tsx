@@ -28,15 +28,21 @@ const CheckoutPage: NextPageWithLayout = () => {
   const { me } = useMe();
   const { t } = useTranslation('common');
   const userContact = me?.profile.contact;
+  const userGmail = me?.email;
   const phoneValue = userContact?.slice(2);
   const fullName = useRef<HTMLInputElement>(null);
+  const gmail = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
   const address = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     if (phone.current) {
       phone.current.value = String(phoneValue);
     }
-  }, [phoneValue]);
+    if (gmail.current) {
+      gmail.current.value = userGmail;
+    }
+  }, [phoneValue, userGmail]);
+
   const {
     items,
     total,
@@ -74,6 +80,7 @@ const CheckoutPage: NextPageWithLayout = () => {
     fullName: '',
     phone: '',
     address: '',
+    gmail: '',
   });
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required('Vui lòng không để trống Họ Tên'),
@@ -81,8 +88,13 @@ const CheckoutPage: NextPageWithLayout = () => {
       .nullable(undefined)
       .matches(/^\d+$/, 'Số điện thoại phải là số')
       .required('Vui lòng không để trống số điện thoại'),
+    gmail: Yup.string()
+      .trim()
+      .email('Vui lòng nhập đúng định dạng email')
+      .required('Vui lòng không để trống gmail'),
     address: Yup.string().required('Vui lòng không để trống địa chỉ'),
   });
+
   const handleBlur = async () => {
     try {
       await validationSchema.validate(
@@ -90,6 +102,7 @@ const CheckoutPage: NextPageWithLayout = () => {
           fullName: fullName.current?.value,
           phone: phone.current?.value,
           address: address.current?.value,
+          gmail: gmail.current?.value,
         },
         { abortEarly: false },
       );
@@ -97,6 +110,7 @@ const CheckoutPage: NextPageWithLayout = () => {
         fullName: '',
         phone: '',
         address: '',
+        gmail: '',
       });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
@@ -110,7 +124,6 @@ const CheckoutPage: NextPageWithLayout = () => {
       }
     }
   };
-
   return (
     <>
       <Seo
@@ -124,7 +137,7 @@ const CheckoutPage: NextPageWithLayout = () => {
             <h2 className="flex items-center justify-between border-b border-light-400 px-5 py-4 text-sm font-medium text-dark dark:border-dark-400 dark:text-light sm:py-5 sm:px-7 md:text-base">
               {t('text-checkout-title')}
             </h2>
-            <div className="px-5 py-3 sm:py-4 sm:px-7 flex justify-between">
+            <div className="px-5 py-3 sm:py-3 sm:px-7 flex justify-between">
               <Input
                 placeholder="Họ và Tên"
                 onBlur={handleBlur}
@@ -138,11 +151,19 @@ const CheckoutPage: NextPageWithLayout = () => {
                 error={errorMessage.phone ? errorMessage.phone : ''}
               />
             </div>
-            <div className="px-5 py-3 sm:py-4 sm:px-7 flex justify-between">
+            <div className="px-5 py-3 sm:py-3 sm:px-7 ">
+              <Input
+                placeholder="Gmail "
+                ref={gmail}
+                onBlur={handleBlur}
+                error={errorMessage.gmail ? errorMessage.gmail : ''}
+              />
+            </div>
+            <div className="px-5 py-3 sm:py-3 sm:px-7 flex justify-between">
               <Input placeholder="Thành Phố " />
               <Input placeholder="Quận / Huyện" />
             </div>
-            <div className="px-5 py-3 sm:py-4 sm:px-7">
+            <div className="px-5 py-3 sm:py-3 sm:px-7">
               <Textarea
                 placeholder="Địa Chỉ Chi Tiết"
                 inputClassName="min-h-[75px]"
@@ -202,9 +223,10 @@ const CheckoutPage: NextPageWithLayout = () => {
             )}
             {!isEmpty && Boolean(verifiedResponse) && (
               <CartCheckout
-                fullName={fullName.current?.value}
+                customer_name={fullName.current?.value}
                 phone={phone.current?.value}
                 address={address.current?.value}
+                email={gmail.current?.value}
               />
             )}
           </div>
