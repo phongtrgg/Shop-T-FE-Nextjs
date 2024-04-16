@@ -13,6 +13,7 @@ export interface Item {
     name: string;
   };
   language: string;
+  tomxu: any;
 }
 export interface VerifiedResponse {
   total_tax: number;
@@ -26,13 +27,13 @@ export interface UpdateItemInput extends Partial<Omit<Item, 'id'>> {}
 export function addItemWithQuantity(
   items: Item[],
   item: Optional<Item, 'quantity'>,
-  quantity: number
+  quantity: number,
 ) {
   if (quantity <= 0) {
     throw new Error("cartQuantity can't be zero or less than zero");
   }
   const existingItemIndex = items.findIndex(
-    (existingItem) => existingItem.id === item.id
+    (existingItem) => existingItem.id === item.id,
   );
 
   if (existingItemIndex > -1) {
@@ -46,7 +47,7 @@ export function addItemWithQuantity(
 export function removeItemOrQuantity(
   items: Item[],
   id: Item['id'],
-  quantity: number
+  quantity: number,
 ) {
   return items.reduce((acc: Item[], item) => {
     if (item.id === id) {
@@ -71,10 +72,10 @@ export function getItem(items: Item[], id: Item['id']) {
 export function updateItem(
   items: Item[],
   id: Item['id'],
-  item: UpdateItemInput
+  item: UpdateItemInput,
 ) {
   return items.map((existingItem) =>
-    existingItem.id === id ? { ...existingItem, ...item } : existingItem
+    existingItem.id === id ? { ...existingItem, ...item } : existingItem,
   );
 }
 
@@ -94,6 +95,8 @@ export const calculateItemTotals = (items: Item[]) =>
 
 export const calculateTotal = (items: Item[]) =>
   items.reduce((total, item) => total + item.quantity * item.price, 0);
+export const calculateTomxu = (items: Item[]) =>
+  items.reduce((total, item) => total + item.quantity * item.tomxu, 0);
 
 export const calculateTotalItems = (items: Item[]) =>
   items.reduce((sum, item) => sum + item.quantity, 0);
@@ -107,7 +110,7 @@ interface PriceValues {
 }
 export const calculatePaidTotal = (
   { totalAmount, tax, shipping_charge }: PriceValues,
-  discount?: number
+  discount?: number,
 ) => {
   let paidTotal = totalAmount + tax + shipping_charge;
   if (discount) {

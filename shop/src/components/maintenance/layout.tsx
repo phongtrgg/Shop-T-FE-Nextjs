@@ -90,12 +90,11 @@ const Maintenance = ({ children }: MaintenanceProps) => {
       !AccessAdminRoles &&
       !Boolean(seenPopup)
     ) {
-      let timer = setTimeout(
-        () =>
-          openModal('PROMO_POPUP_MODAL', {
-            isLoading: settingLoading,
-            popupData: settings?.promoPopup,
-          }),
+      let timer = setTimeout(() =>
+        // openModal('PROMO_POPUP_MODAL', {
+        //   isLoading: settingLoading,
+        //   popupData: settings?.promoPopup,
+        // }),
         Number(settings?.promoPopup?.popUpDelay),
       );
       return () => clearTimeout(timer);

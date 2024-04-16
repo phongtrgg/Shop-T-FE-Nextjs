@@ -30,7 +30,7 @@ export default function Card({ product }: { product: Product }) {
   };
   const { t } = useTranslation('common');
   const isFreeItem = isFree(product?.sale_price ?? product?.price);
-  console.log(product);
+
   return (
     <motion.div variants={fadeInBottomWithScaleX()} title={name}>
       <div className="group relative flex aspect-[3/2] w-full justify-center overflow-hidden">

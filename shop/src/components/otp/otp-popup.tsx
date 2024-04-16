@@ -83,8 +83,8 @@ const OTPpopup = (props: any) => {
         products: props.order.products.map((item: any) => ({
           product_id: item.id,
           quantity: Number(item.pivot.order_quantity),
-          tomxu: item.tomxu.price_tomxu,
-          tomxu_subtotal: item.tomxu.price_tomxu * item.pivot.order_quantity,
+          tomxu: item.tomxu,
+          tomxu_subtotal: item.tomxu * item.pivot.order_quantity,
           shop_id: item.shop_id,
         })),
       };

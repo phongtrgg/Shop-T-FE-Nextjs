@@ -512,6 +512,7 @@ export interface Order {
   sales_tax: number;
   reviews?: Review[];
   customer: any;
+  total_tomxu?: number;
 }
 
 export interface DigitalFile {

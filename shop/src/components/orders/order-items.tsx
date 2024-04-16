@@ -74,7 +74,6 @@ export const OrderItems = ({
   const { t } = useTranslation('common');
   const { alignLeft, alignRight } = useIsRTL();
   const { openModal } = useModalAction();
-  console.log(products);
   const getStatus = status === PaymentStatus.SUCCESS;
 
   const { mutate } = useMutation(client.orders.generateDownloadLink, {
@@ -122,20 +121,6 @@ export const OrderItems = ({
       width: 100,
       render: function renderQuantity(pivot: any) {
         return <p className="text-base">{pivot.order_quantity}</p>;
-      },
-    },
-    {
-      title: t('text-unit-price'),
-
-      dataIndex: 'pivot',
-      key: 'pivot',
-      align: 'center',
-      width: 100,
-      render: function renderUnitPrice(pivot: any) {
-        const { price } = usePrice({
-          amount: pivot?.unit_price,
-        });
-        return <p className="text-base">{price}</p>;
       },
     },
     {
