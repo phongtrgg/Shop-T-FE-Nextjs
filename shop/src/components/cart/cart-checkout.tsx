@@ -200,7 +200,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
         </div>
         <div className="mt-4 flex justify-between border-t border-light-400 pt-5 dark:border-dark-400">
           <p>{t('text-total')}</p>
-          <strong className="font-semibold text-center">
+          <strong className="font-semibold text-end">
             {total}
             <br />
             <p className="text-yellow-500 text-sm">{`${totalTomxu} Tomxu`}</p>

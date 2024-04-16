@@ -182,8 +182,9 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               />
             </div>
 
-            <div className="mt-12 flex flex-col md:flex-row">
+            <div className="mt-12 flex flex-col justify-around md:flex-row xs:flex-col gap-20">
               <div className="w-full md:w-1/2 ltr:md:pl-3 rtl:md:pr-3">
+                {/* <div className="w-full md:w-1/2 ltr:md:pl-3 rtl:md:pr-3"> */}
                 <h2 className="mb-6 text-base font-medium dark:text-white">
                   {t('text-order-status')}
                 </h2>
@@ -196,13 +197,14 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               </div>
               {/* end of order details */}
 
-              <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pr-3 rtl:md:pl-3">
+              <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3   ">
+                {/* <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3"> */}
                 <h2 className="mb-6 text-base font-medium dark:text-white">
                   {t('text-order-details')}
                 </h2>
-                <div>
+                <div className="">
                   <Listitem title={t('text-total-item')} details={formatItem} />
-                  <Listitem title={t('text-sub-total')} details={sub_total} />
+                  <Listitem title={'Đơn giá'} details={sub_total} />
                   <Listitem title={t('text-tax')} details={tax} />
                   <div className="w-1/2 border-b border-solid border-gray-200 py-1 dark:border-b-[#434343]" />
                   <Listitem title={t('text-total')} details={total} />
