@@ -210,7 +210,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
     },
     VNPAY: {
       name: 'vnpay',
-      value: PaymentGateway.BANKING,
+      value: PaymentGateway.VNPAY,
       icon: <VnpayIcon className="w-32" />,
       darkIcon: <VnpayIcon className="w-32" />,
       component: PaymentOnline,

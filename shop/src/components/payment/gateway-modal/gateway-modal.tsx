@@ -25,6 +25,9 @@ import { paymentGatewayAtom } from '@/components/cart/lib/checkout';
 import { TomxuIcon } from '@/components/icons/payment-gateways/tomxu';
 import { CashIcon } from '@/components/icons/payment-gateways/cash';
 import { BankingIcon } from '@/components/icons/payment-gateways/banking';
+import { MocaIcon } from '@/components/icons/payment-gateways/moca';
+import { MomoIcon } from '@/components/icons/payment-gateways/momo';
+import { VnpayIcon } from '@/components/icons/payment-gateways/vnpay';
 
 interface IProps {
   theme?: string;
@@ -162,9 +165,10 @@ const PaymentGateways: React.FC<IProps> = ({
       width: 100,
       height: 52,
     },
-    CASH: {
-      name: 'Cash',
-      value: PaymentGateway.CASH,
+
+    COD: {
+      name: 'Cod',
+      value: PaymentGateway.COD,
       icon: <CashIcon className="w-32" />,
       darkIcon: <CashIcon className="w-32" />,
       component: PaymentOnline,
@@ -176,6 +180,33 @@ const PaymentGateways: React.FC<IProps> = ({
       value: PaymentGateway.BANKING,
       icon: <BankingIcon className="w-32" />,
       darkIcon: <BankingIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    MOMO: {
+      name: 'Momo',
+      value: PaymentGateway.MOMO,
+      icon: <MomoIcon className="w-32" />,
+      darkIcon: <MomoIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    MOCA: {
+      name: 'Moca',
+      value: PaymentGateway.MOCA,
+      icon: <MocaIcon className="w-32" />,
+      darkIcon: <MocaIcon className="w-32" />,
+      component: PaymentOnline,
+      width: 100,
+      height: 52,
+    },
+    VNPAY: {
+      name: 'vnpay',
+      value: PaymentGateway.BANKING,
+      icon: <VnpayIcon className="w-32" />,
+      darkIcon: <VnpayIcon className="w-32" />,
       component: PaymentOnline,
       width: 100,
       height: 52,
@@ -267,7 +298,7 @@ const GatewayModal = () => {
             onClick={handleSubmit}
             disabled={disabledSelection || !!isLoading}
           >
-            Submit Payment
+            Đổi Phương Thức
           </Button>
         </div>
       </div>
