@@ -27,7 +27,7 @@ const CheckoutPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { me } = useMe();
   const { t } = useTranslation('common');
-  const userContact = me?.profile.contact;
+  const userContact = me?.profile?.contact;
   const userGmail = me?.email;
   const userName = me?.name;
   const phoneValue = userContact?.slice(2);
@@ -43,14 +43,15 @@ const CheckoutPage: NextPageWithLayout = () => {
     setVerifiedResponse,
     verifiedResponse,
   } = useCart();
+
   useEffect(() => {
-    if (!isEmpty && Boolean(verifiedResponse) && phone.current) {
+    if (!isEmpty && Boolean(verifiedResponse) && phone.current && phoneValue) {
       phone.current.value = String(phoneValue);
     }
-    if (!isEmpty && Boolean(verifiedResponse) && gmail.current) {
+    if (!isEmpty && Boolean(verifiedResponse) && gmail.current && userGmail) {
       gmail.current.value = userGmail;
     }
-    if (!isEmpty && Boolean(verifiedResponse) && fullName.current) {
+    if (!isEmpty && Boolean(verifiedResponse) && fullName.current && userName) {
       fullName.current.value = String(userName);
     }
   }, [isEmpty, verifiedResponse]);

@@ -9,6 +9,7 @@ import { useCart } from '@/components/cart/lib/cart.context';
 import {
   calculatePaidTotal,
   calculateTotal,
+  calculateTomxu,
 } from '@/components/cart/lib/cart.utils';
 import CartWallet from '@/components/cart/cart-wallet';
 import { usePhoneInput } from '@/components/ui/forms/phone-input';
@@ -43,7 +44,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
   const router = useRouter();
   const { t } = useTranslation('common');
   const { me } = useMe();
-  const defaultPhoneNumber = me?.profile.contact;
+  const defaultPhoneNumber = me?.profile?.contact;
   const { mutate, isLoading } = useMutation(client.orders.create, {
     onSuccess: (res) => {
       const { tracking_number, payment_gateway, payment_intent } = res;
@@ -76,11 +77,17 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
   const [payableAmount] = useAtom(payableAmountAtom);
   const [token] = useAtom(verifiedTokenAtom);
   const { items, verifiedResponse } = useCart();
-
+  const [totalTomxu, setTotalTomxu] = useState<number>();
   const available_items = items.filter(
     (item) =>
       !verifiedResponse?.unavailable_products?.includes(item.id.toString()),
   );
+  useEffect(() => {
+    const tomxu: any = calculateTomxu(items);
+    if (tomxu) {
+      setTotalTomxu(tomxu);
+    }
+  }, [items]);
 
   // Calculate price
   const { price: tax } = usePrice(
@@ -155,6 +162,8 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
         order_quantity: item.quantity,
         unit_price: item.price,
         subtotal: item.price * item.quantity,
+        tomxu: item.tomxu,
+        tomxu_subtotal: item.tomxu * item.quantity,
       })),
       payment_gateway: gateWay,
       use_wallet_points,
@@ -191,12 +200,16 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
         </div>
         <div className="mt-4 flex justify-between border-t border-light-400 pt-5 dark:border-dark-400">
           <p>{t('text-total')}</p>
-          <strong className="font-semibold">{total}</strong>
+          <strong className="font-semibold text-center">
+            {total}
+            <br />
+            <p className="text-yellow-500 text-sm">{`${totalTomxu} Tomxu`}</p>
+          </strong>
         </div>
-        <div className="mt-4 flex justify-between border-t border-light-400 pt-5 dark:border-dark-400">
+        {/* <div className="mt-4 flex justify-between border-t border-light-400 pt-5 dark:border-dark-400">
           <p>{t('text-total')}</p>
-          <strong className="font-semibold">{total}</strong>
-        </div>
+          <strong className="font-semibold">{`${totalTomxu} Tomxu`}</strong>
+        </div> */}
       </div>
 
       {verifiedResponse && (

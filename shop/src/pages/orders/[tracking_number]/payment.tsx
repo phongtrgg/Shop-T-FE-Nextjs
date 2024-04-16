@@ -33,7 +33,7 @@ import { useState } from 'react';
 import Image from '@/components/ui/image';
 type Props = {
   title: string;
-  details: string | undefined;
+  details: string | undefined | number;
 };
 
 const Card = ({ title, details }: Props) => {
@@ -87,6 +87,11 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
 
   const { price: amountDue } = usePrice({ amount: amount_due });
   const { price: gatewayPayment } = usePrice({ amount: gateway_payment });
+  const formatItem =
+    order?.products?.length !== undefined && order.products.length < 10
+      ? `0${order.products.length}`
+      : order?.products?.length ?? 0;
+  console.log(gatewayPayment);
   return (
     <div className="p-4 sm:p-8">
       {showOTP && order?.payment_gateway === 'TOMXU' && (
@@ -163,7 +168,14 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                 title={t('text-date')}
                 details={dayjs(order?.created_at).format('MMMM D, YYYY')}
               />
-              <Card title={t('text-total')} details={total} />
+              <Card
+                title={t('text-total')}
+                details={
+                  order?.payment_gateway === 'TOMXU'
+                    ? `${order.total_tomxu} Tomxu`
+                    : total
+                }
+              />
               <Card
                 title={t('text-payment-method')}
                 details={order?.payment_gateway ?? 'N/A'}
@@ -189,13 +201,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                   {t('text-order-details')}
                 </h2>
                 <div>
-                  <Listitem
-                    title={t('text-total-item')}
-                    details={formatString(
-                      order?.products?.length,
-                      t('text-item'),
-                    )}
-                  />
+                  <Listitem title={t('text-total-item')} details={formatItem} />
                   <Listitem title={t('text-sub-total')} details={sub_total} />
                   <Listitem title={t('text-tax')} details={tax} />
                   <div className="w-1/2 border-b border-solid border-gray-200 py-1 dark:border-b-[#434343]" />
@@ -213,8 +219,6 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                       details={gatewayPayment}
                     />
                   )}
-
-                  <Listitem title={t('text-amount-due')} details={amountDue} />
                 </div>
               </div>
               {/* end of total amount */}

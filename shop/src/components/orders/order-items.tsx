@@ -125,7 +125,7 @@ export const OrderItems = ({
       },
     },
     {
-      title: t('text-unit-price'),
+      title: 'Đơn giá',
 
       dataIndex: 'pivot',
       key: 'pivot',
@@ -139,7 +139,7 @@ export const OrderItems = ({
       },
     },
     {
-      title: t('text-sum-price'),
+      title: 'Thành tiền',
       dataIndex: 'pivot',
       key: 'pivot',
       align: 'center',
@@ -151,31 +151,31 @@ export const OrderItems = ({
         return <p className="text-base">{price}</p>;
       },
     },
-    {
-      title: ' ',
-      dataIndex: '',
-      align: alignLeft,
-      width: 120,
-      render: function RenderReview(_: any, record: any) {
-        return (
-          <div className="flex items-center justify-end gap-4">
-            <Button
-              className={`flex shrink-0 items-center font-semibold transition-all  hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:dark:border-dark-600 ${
-                getStatus
-                  ? ''
-                  : 'pointer-events-none cursor-not-allowed opacity-70'
-              }`}
-              disabled={getStatus ? false : true}
-              onClick={() => (getStatus ? openReviewModal(record) : null)}
-            >
-              {getReview(record?.my_review, record?.pivot?.order_id)
-                ? t('text-update-review')
-                : t('text-write-review')}
-            </Button>
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: ' ',
+    //   dataIndex: '',
+    //   align: alignLeft,
+    //   width: 120,
+    //   render: function RenderReview(_: any, record: any) {
+    //     return (
+    //       <div className="flex items-center justify-end gap-4">
+    //         <Button
+    //           className={`flex shrink-0 items-center font-semibold transition-all  hover:bg-brand hover:text-white sm:h-12 sm:rounded sm:border sm:border-light-500 sm:dark:border-dark-600 ${
+    //             getStatus
+    //               ? ''
+    //               : 'pointer-events-none cursor-not-allowed opacity-70'
+    //           }`}
+    //           disabled={getStatus ? false : true}
+    //           onClick={() => (getStatus ? openReviewModal(record) : null)}
+    //         >
+    //           {getReview(record?.my_review, record?.pivot?.order_id)
+    //             ? t('text-update-review')
+    //             : t('text-write-review')}
+    //         </Button>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
   return (
     <Table

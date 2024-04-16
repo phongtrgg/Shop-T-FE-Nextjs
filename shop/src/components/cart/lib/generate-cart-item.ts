@@ -12,5 +12,6 @@ export function generateCartItem(item: any) {
       name: item.shop.name,
     },
     language: item.language,
+    tomxu: item.tomxu,
   };
 }
