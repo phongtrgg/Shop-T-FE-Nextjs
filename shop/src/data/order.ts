@@ -158,7 +158,7 @@ export function useGetPaymentIntent({
       },
     },
   );
-  console.log(data);
+
   return {
     data,
     getPaymentIntentQuery: refetch,

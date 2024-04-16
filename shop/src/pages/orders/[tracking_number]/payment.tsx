@@ -117,29 +117,29 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                   Để hoàn tất đơn hàng, quý khách vui lòng chuyển khoản theo nội
                   dung sau :
                 </h1>
-                <div className="flex  items-center justify-around border-solid border-2 rounded-md shadow bg-white py-6">
-                  <div className="leading-1  flex flex-col gap-3 ">
-                    <div className="flex items-center justify-between gap-16">
+                <div className="flex flex-col md:flex-row  items-center justify-around border-solid border-2 rounded-md shadow bg-white py-6 gap-6">
+                  <div className="leading-1  flex flex-col gap-3  ">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
                       Ngân hàng :
                       <span className="font-semibold mx-5 ">TECHCOMBANK</span>
                     </div>
-                    <div className="flex items-center justify-between gap-16">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
                       Số Tài Khoản :
                       <span className="font-semibold text-red-500 text-lg mx-5">
                         123456789
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-16">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
                       Chủ tài khoản :
                       <span className="font-semibold mx-5">Tomiru</span>
                     </div>
-                    <div className="flex items-center justify-between gap-16">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
                       Số tiền :
                       <span className="font-semibold mx-5 text-red-500 text-xl">
                         {total}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-16">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
                       Nội dung :
                       <span className="font-semibold  mx-5">
                         {order?.tracking_number}

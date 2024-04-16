@@ -11,7 +11,7 @@ import { PayStackDark } from '@/components/icons/payment-gateways/paystack-dark'
 import { RazorPayDarkIcon } from '@/components/icons/payment-gateways/razorpay-dark';
 import { useModalState } from '@/components/modal-views/context';
 import Button from '@/components/ui/button';
-import { useGetPaymentIntent } from '@/data/order';
+import { useGetPaymentIntent, useOrder, useOrders } from '@/data/order';
 import { useSettings } from '@/data/settings';
 import { Order, PaymentGateway } from '@/types';
 import { RadioGroup } from '@headlessui/react';
@@ -30,6 +30,7 @@ import { MomoIcon } from '@/components/icons/payment-gateways/momo';
 import { VnpayIcon } from '@/components/icons/payment-gateways/vnpay';
 import { useModalAction } from '@/components/modal-views/context';
 import { toast } from 'react-hot-toast';
+import { Router, useRouter } from 'next/router';
 interface IProps {
   theme?: string;
   settings: any;
@@ -267,9 +268,7 @@ const GatewayModal = () => {
   });
 
   const handleSubmit = async () => {
-    console.log('truoc', data);
     await getPaymentIntentQuery();
-    console.log('data', data);
     if (data) {
       toast.success(
         'Đã đổi phương thanh toán thành ' + data.order.payment_gateway,

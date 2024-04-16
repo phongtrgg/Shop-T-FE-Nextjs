@@ -74,7 +74,7 @@ export const OrderItems = ({
   const { t } = useTranslation('common');
   const { alignLeft, alignRight } = useIsRTL();
   const { openModal } = useModalAction();
-  console.log(products);
+
   const getStatus = status === PaymentStatus.SUCCESS;
 
   const { mutate } = useMutation(client.orders.generateDownloadLink, {
