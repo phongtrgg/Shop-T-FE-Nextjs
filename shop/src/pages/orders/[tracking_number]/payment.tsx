@@ -115,43 +115,36 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                 Để hoàn tất đơn hàng, quý khách vui lòng chuyển khoản theo nội
                 dung sau :
               </h1>
-              <div className="flex  items-center justify-around border-solid border-2 rounded-md shadow bg-white py-6">
+              <div className="flex flex-col md:flex-row  items-center md:justify-around md:border-solid md:border-2 md:rounded-md shadow bg-white px-5 md:px-0 py-6 gap-10">
                 <div className="leading-1  flex flex-col gap-3 ">
-                  <div className="flex items-center justify-between gap-16">
+                  <div className="flex items-center md:justify-between justify-start md:gap-16">
                     Ngân hàng :
                     <span className="font-semibold mx-5 ">TECHCOMBANK</span>
                   </div>
-                  <div className="flex items-center justify-between gap-16">
+                  <div className="flex items-center md:justify-between justify-start md:gap-16">
                     Số Tài Khoản :
                     <span className="font-semibold text-red-500 text-lg mx-5">
                       123456789
                     </span>
                   </div>
-                  <div className="flex items-center justify-between gap-16">
+                  <div className="flex items-center md:justify-between justify-start md:gap-16">
                     Chủ tài khoản :
                     <span className="font-semibold mx-5">Tomiru</span>
                   </div>
-                  <div className="flex items-center justify-between gap-16">
+                  <div className="flex items-center md:justify-between justify-start md:gap-16">
                     Số tiền :
                     <span className="font-semibold mx-5 text-red-500 text-xl">
                       {total}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between gap-16">
+                  <div className="flex items-center md:justify-between justify-start md:gap-16">
                     Nội dung :
                     <span className="font-semibold  mx-5">
                       {order?.tracking_number}
                     </span>
                   </div>
                 </div>
-                {/* <div>
-                  <Image
-                    src="/icons/tech.jpg"
-                    alt="tcb-img"
-                    width={`${100}`}
-                    height={`${100}`}
-                  />
-                </div> */}
+
                 <div>
                   <Image
                     src="/icons/tcbqr.jpg"
@@ -186,8 +179,9 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               />
             </div>
 
-            <div className="mt-12 flex flex-col md:flex-row">
+            <div className="mt-12 flex flex-col justify-around md:flex-row xs:flex-col gap-20">
               <div className="w-full md:w-1/2 ltr:md:pl-3 rtl:md:pr-3">
+                {/* <div className="w-full md:w-1/2 ltr:md:pl-3 rtl:md:pr-3"> */}
                 <h2 className="mb-6 text-base font-medium dark:text-white">
                   {t('text-order-status')}
                 </h2>
@@ -200,13 +194,14 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               </div>
               {/* end of order details */}
 
-              <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pr-3 rtl:md:pl-3">
+              <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3   ">
+                {/* <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3"> */}
                 <h2 className="mb-6 text-base font-medium dark:text-white">
                   {t('text-order-details')}
                 </h2>
-                <div>
+                <div className="">
                   <Listitem title={t('text-total-item')} details={formatItem} />
-                  <Listitem title={t('text-sub-total')} details={sub_total} />
+                  <Listitem title={'Đơn giá'} details={sub_total} />
                   <Listitem title={t('text-tax')} details={tax} />
                   <div className="w-1/2 border-b border-solid border-gray-200 py-1 dark:border-b-[#434343]" />
                   <Listitem title={t('text-total')} details={total} />
