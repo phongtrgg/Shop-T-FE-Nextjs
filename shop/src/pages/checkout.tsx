@@ -20,16 +20,23 @@ import type { GetStaticProps } from 'next';
 import { toast } from 'react-hot-toast';
 import Input from '@/components/ui/forms/input';
 import Textarea from '@/components/ui/forms/textarea';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import * as Yup from 'yup';
 
 const CheckoutPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { me } = useMe();
   const { t } = useTranslation('common');
-
+  const userContact = me?.profile.contact;
+  const phoneValue = userContact?.slice(2);
   const fullName = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
   const address = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    if (phone.current) {
+      phone.current.value = String(phoneValue);
+    }
+  }, [phoneValue]);
   const {
     items,
     total,
@@ -63,56 +70,47 @@ const CheckoutPage: NextPageWithLayout = () => {
       })),
     });
   }
-  const [typeError, setTypeError] = useState<any>({
-    fullName: false,
-    phone: false,
-    city: false,
-    district: false,
-    address: false,
-  });
-  const [errorMessage, setErrorMessage] = useState({
+  const [errorMessage, setErrorMessage] = useState<any>({
     fullName: '',
     phone: '',
-    city: '',
-    district: '',
     address: '',
   });
-
-  const handleBlur = () => {
-    if (fullName.current && fullName.current.value.trim() === '') {
-      setErrorMessage((prevState: any) => ({
-        ...prevState,
-        fullName: 'Vui lòng không để trống Họ Tên',
-      }));
-    } else {
-      setErrorMessage((prevState: any) => ({
-        ...prevState,
+  const validationSchema = Yup.object().shape({
+    fullName: Yup.string().required('Vui lòng không để trống Họ Tên'),
+    phone: Yup.string()
+      .nullable(undefined)
+      .matches(/^\d+$/, 'Số điện thoại phải là số')
+      .required('Vui lòng không để trống số điện thoại'),
+    address: Yup.string().required('Vui lòng không để trống địa chỉ'),
+  });
+  const handleBlur = async () => {
+    try {
+      await validationSchema.validate(
+        {
+          fullName: fullName.current?.value,
+          phone: phone.current?.value,
+          address: address.current?.value,
+        },
+        { abortEarly: false },
+      );
+      setErrorMessage({
         fullName: '',
-      }));
-    }
-    if (phone.current && phone.current.value.trim() === '') {
-      setErrorMessage((prevState: any) => ({
-        ...prevState,
-        phone: 'Vui lòng không để trống số điện thoại',
-      }));
-    } else {
-      setErrorMessage((prevState: any) => ({
-        ...prevState,
         phone: '',
-      }));
-    }
-    if (address.current && address.current.value.trim() === '') {
-      setErrorMessage((prevState: any) => ({
-        ...prevState,
-        address: 'Vui lòng không để trống địa chỉ',
-      }));
-    } else {
-      setErrorMessage((prevState: any) => ({
-        ...prevState,
         address: '',
-      }));
+      });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const newErrors: { [key: string]: string } = {};
+        error.inner.forEach((err: Yup.ValidationError) => {
+          if (err.path && typeof err.path === 'string') {
+            newErrors[err.path] = err.message;
+          }
+        });
+        setErrorMessage(newErrors);
+      }
     }
   };
+
   return (
     <>
       <Seo
@@ -204,7 +202,7 @@ const CheckoutPage: NextPageWithLayout = () => {
             )}
             {!isEmpty && Boolean(verifiedResponse) && (
               <CartCheckout
-                fullName={fullName}
+                fullName={fullName.current?.value}
                 phone={phone.current?.value}
                 address={address.current?.value}
               />

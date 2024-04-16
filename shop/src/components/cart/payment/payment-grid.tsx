@@ -45,7 +45,7 @@ export const PaymentGroupOption: React.FC<PaymentGroupOptionProps> = ({
   theme,
 }) => {
   const { isDarkMode } = useIsDarkMode();
-  console.log();
+
   return (
     <RadioGroup.Option value={value} key={value}>
       {({ checked }) => (
