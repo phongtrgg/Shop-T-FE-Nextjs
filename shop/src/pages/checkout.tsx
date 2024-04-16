@@ -29,19 +29,22 @@ const CheckoutPage: NextPageWithLayout = () => {
   const { t } = useTranslation('common');
   const userContact = me?.profile.contact;
   const userGmail = me?.email;
+  const userName = me?.name;
   const phoneValue = userContact?.slice(2);
   const fullName = useRef<HTMLInputElement>(null);
   const gmail = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
   const address = useRef<HTMLTextAreaElement>(null);
-  useEffect(() => {
-    if (phone.current) {
-      phone.current.value = String(phoneValue);
-    }
-    if (gmail.current) {
-      gmail.current.value = userGmail;
-    }
-  }, [phoneValue, userGmail]);
+
+  if (phone.current) {
+    phone.current.value = String(phoneValue);
+  }
+  if (gmail.current) {
+    gmail.current.value = userGmail;
+  }
+  if (fullName.current) {
+    fullName.current.value = String(userName);
+  }
 
   const {
     items,

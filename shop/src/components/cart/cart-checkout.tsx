@@ -162,13 +162,9 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       ...(token && { token }),
       sales_tax: verifiedResponse?.total_tax ?? 0,
       customer_contact: phone ? phone : defaultPhoneNumber,
-      customer_information: {
-        customer_name,
-        customer_contact: phone ? phone : defaultPhoneNumber,
-        address,
-        email,
-      },
+      customer_name,
       address,
+      email,
     });
     Cookies.remove(REVIEW_POPUP_MODAL_KEY);
   }

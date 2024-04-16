@@ -346,7 +346,7 @@ export interface CreateOrderInput {
   isFullWalletPayment: boolean;
   customer_name?: string;
   address: string;
-  customer_information: any;
+  email: string;
 }
 
 export enum PaymentGateway {
