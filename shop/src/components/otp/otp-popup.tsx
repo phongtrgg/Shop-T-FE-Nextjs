@@ -3,15 +3,16 @@ import { useTranslation } from 'next-i18next';
 import Button from '@/components/ui/button';
 import client from '@/data/client';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/router';
+
 import { useRef, useState, useEffect } from 'react';
 import CryptData from '@/lib/hooks/use-crypt-data';
 import { useMe } from '@/data/user';
 import useCountdownTimer from '@/lib/hooks/use-CountdownTimer';
-import { API_ENDPOINTS } from '@/data/client/endpoints';
+
 import OtpInput from '@/components/otp/otp-input';
 import OptionOTP from '@/components/otp/optionOTP';
 import ThankYou from '@/pages/orders/[tracking_number]/thank-you';
+
 const OTPpopup = (props: any) => {
   const [otpValue, setOtpValue] = useState('');
   const [changeOption, setChangeOption] = useState(false);
@@ -175,23 +176,60 @@ const OTPpopup = (props: any) => {
     setIsActive(true);
     setSeconds(120);
   };
+
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center z-50 top-0 bg-black bg-opacity-50 ">
+      <div className="fixed inset-0 flex items-center justify-center z-50 top-0 bg-black bg-opacity-50 rounded-md ">
         {!thank && (
-          <div className="relative w-472 h-auto mx-auto max-w-screen-sm flex-col p-6 pt-6 sm:p-5 sm:pt-8 md:pt-10 3xl:pt-12 bg-light shadow-card dark:bg-dark-250 dark:shadow-none text-center flex items-center justify-center rounded ">
-            <button onClick={offTable} className="absolute top-0 right-0 p-4 ">
-              X
+          <div className="relative w-472 h-auto mx-auto max-w-screen-sm flex-col p-6 pt-6 sm:p-5 sm:pt-8 md:pt-10 3xl:pt-12 bg-light shadow dark:bg-dark-250 dark:shadow-none text-center flex items-center justify-center rounded-lg ">
+            <button
+              onClick={offTable}
+              className="absolute top-1 right-1 border-solid p-3 flex items-center  "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+                width="20"
+                height="20"
+              >
+                <path
+                  fill="#ff0000"
+                  d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"
+                />
+              </svg>
             </button>
             {!changeOption && (
               <div className="mb-8 leading-tight relative h-auto">
-                <h2 className="text-center  text-lg mb-10">Xác nhận OTP</h2>
+                <h2 className="text-center  text-lg mb-10 font-bold">
+                  Xác nhận OTP
+                </h2>
                 <div className="border border-b absolute top-10 w-full"></div>
                 <div className="text-sm">
                   {selectedOption === 'email' && (
                     <>
-                      <p>Quý khách vui lòng nhập mã OTP đã được gửi về</p>
-                      <p>{me?.email}</p>
+                      <p>Quý khách vui lòng ấn gửi mã để nhận OTP</p>
+                      {!isActive && (
+                        <button
+                          className={`mt-1 border  p-1 rounded-lg  ${
+                            isActive
+                              ? 'pointer-events-none '
+                              : 'border-green-500 bg-green-600 text-white'
+                          }`}
+                          onClick={OTPHandler}
+                        >
+                          {selectedOption === 'card' ? 'Lấy số' : 'Gửi mã'}
+                        </button>
+                      )}
+
+                      {isActive ? (
+                        <p>
+                          {' '}
+                          <span className="font-bold">OTP</span> đã được gửi về{' '}
+                          <span className="font-bold">{me?.email}</span>
+                        </p>
+                      ) : (
+                        ''
+                      )}
                     </>
                   )}
                   {selectedOption === 'sms' && (
@@ -245,16 +283,6 @@ const OTPpopup = (props: any) => {
                   )}
                 </div>
                 <div>
-                  <button
-                    className={`mt-5 border  p-1 rounded-lg  ${
-                      isActive
-                        ? 'pointer-events-none '
-                        : 'border-green-500 bg-green-600 text-white'
-                    }`}
-                    onClick={OTPHandler}
-                  >
-                    {selectedOption === 'card' ? 'Lấy số' : 'Gửi mã'}
-                  </button>
                   <p className="mt-3">
                     Quý khách muốn nhận OTP theo hình thức khác ?
                   </p>

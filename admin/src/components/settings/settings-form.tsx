@@ -424,7 +424,7 @@ export default function SettingsForm({ settings, taxClasses }: IProps) {
   }
 
   let paymentGateway = watch('paymentGateway');
-  // let defaultPaymentGateway = watch('defaultPaymentGateway');
+  let defaultPaymentGateway = watch('defaultPaymentGateway');
   let useEnableGateway = watch('useEnableGateway');
   // let enableAi = watch('useAi');
 
@@ -457,9 +457,9 @@ export default function SettingsForm({ settings, taxClasses }: IProps) {
   );
 
   // @ts-ignore
-  // let checkAvailableDefaultGateway = paymentGateway?.some(
-  //   (item: any) => item?.name === defaultPaymentGateway?.name,
-  // );
+  let checkAvailableDefaultGateway = paymentGateway?.some(
+    (item: any) => item?.name === defaultPaymentGateway?.name,
+  );
 
   const isStripeActive = paymentGateway?.some(
     (payment) => payment?.name === 'stripe',

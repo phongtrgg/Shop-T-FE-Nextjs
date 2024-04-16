@@ -128,14 +128,14 @@ export default function PaymentSettingsForm({ settings }: IProps) {
   useConfirmRedirectIfDirty({ isDirty });
   let paymentGateway = watch('paymentGateway');
   console.log(paymentGateway);
-  // let defaultPaymentGateway = watch('defaultPaymentGateway');
+  let defaultPaymentGateway = watch('defaultPaymentGateway');
   let useEnableGateway = watch('useEnableGateway');
-  // let checkAvailableDefaultGateway = paymentGateway?.some(
-  //   (item: any) => item?.name === defaultPaymentGateway?.name,
-  // );
-  // const isStripeActive = paymentGateway?.some(
-  //   (payment) => payment?.name === 'stripe',
-  // );
+  let checkAvailableDefaultGateway = paymentGateway?.some(
+    (item: any) => item?.name === defaultPaymentGateway?.name,
+  );
+  const isStripeActive = paymentGateway?.some(
+    (payment) => payment?.name === 'stripe',
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -186,11 +186,11 @@ export default function PaymentSettingsForm({ settings }: IProps) {
                   options={PAYMENT_GATEWAY}
                   control={control}
                   name="paymentGateway"
-                  // defaultItem={
-                  //   checkAvailableDefaultGateway
-                  //     ? defaultPaymentGateway?.name
-                  //     : ''
-                  // }
+                  defaultItem={
+                    checkAvailableDefaultGateway
+                      ? defaultPaymentGateway?.name
+                      : ''
+                  }
                   disable={isEmpty(paymentGateway)}
                 />
               </div>
@@ -284,13 +284,13 @@ export default function PaymentSettingsForm({ settings }: IProps) {
               <Label className="flex items-center gap-2.5">
                 {`Sample Output: `}
                 <Badge
-                  text={formatPrice({
-                    amount: 987456321.123456789,
-                    currencyCode:
-                      currentCurrency?.code ?? settings?.options?.currency!,
-                    locale: formation?.code! as string,
-                    fractions: currentFractions,
-                  })}
+                  // text={formatPrice({
+                  //   amount: 987456321.123456789,
+                  //   currencyCode:
+                  //     currentCurrency?.code ?? settings?.options?.currency!,
+                  //   locale: formation?.code! as string,
+                  //   fractions: currentFractions,
+                  // })}
                   color="bg-accent"
                 />
               </Label>
