@@ -90,7 +90,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
     order?.products?.length !== undefined && order.products.length < 10
       ? `0${order.products.length}`
       : order?.products?.length ?? 0;
-  console.log(order);
+  console.log(gatewayPayment);
   return (
     <div className="p-4 sm:p-8">
       {showOTP && order?.payment_gateway === 'TOMXU' && (
