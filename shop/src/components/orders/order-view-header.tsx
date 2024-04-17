@@ -72,26 +72,26 @@ export default function OrderViewHeader({
             </div>
           </div>
         </div>
-        {isPaymentActionPending && order?.children?.length > 0 ? (
-          <span className="order-2 mt-5 w-full max-w-full shrink-0 basis-full sm:order-1 md:mt-0 md:w-auto md:max-w-none md:basis-auto md:ltr:ml-auto md:rtl:mr-auto">
-            {/* {order?.payment_gateway !== 'TOMXU' && (
+        {/* {isPaymentActionPending && order?.children?.length > 0 ? ( */}
+        <span className="order-2 mt-5 w-full max-w-full shrink-0 basis-full sm:order-1 md:mt-0 md:w-auto md:max-w-none md:basis-auto md:ltr:ml-auto md:rtl:mr-auto">
+          {/* {order?.payment_gateway !== 'TOMXU' && (
               <PayNowButton
                 tracking_number={order?.tracking_number}
                 order={order}
               />
             )} */}
-            {order?.payment_gateway === 'TOMXU' && (
-              <Button
-                className="w-full text-13px md:px-3"
-                onClick={() => {
-                  action(true);
-                }}
-              >
-                {t('text-pay-now')}
-              </Button>
-            )}
-          </span>
-        ) : null}
+          {order?.payment_gateway === 'TOMXU' && (
+            <Button
+              className="w-full text-13px md:px-3"
+              onClick={() => {
+                action(true);
+              }}
+            >
+              {t('text-pay-now')}
+            </Button>
+          )}
+        </span>
+        {/* ) : null} */}
         {settings?.paymentGateway?.length > 1 && isPaymentActionPending && (
           <span className="order-2 mt-5 w-full max-w-full shrink-0 basis-full sm:order-1 lg:mt-0 lg:w-auto lg:max-w-none lg:basis-auto lg:ltr:ml-auto lg:rtl:mr-auto">
             <ChangeGateway order={order} />

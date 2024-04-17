@@ -135,17 +135,19 @@ export default function Card({ product }: { product: Product }) {
           )}
         </div>
       </div>
-      <div className="flex justify-between">
-        <p>Giá niêm yết</p>
-        <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-slate-500  dark:text-slate-500">
-          {isFreeItem ? t('text-free') : price}
-        </span>
-      </div>
-      <div className="flex justify-between">
-        <p className="text-brand">Giá dành cho thành viên Tomiru</p>
-        <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-brand ">
-          {salePrice}
-        </span>
+      <div className="mt-2">
+        <div className="flex items-center justify-between">
+          <p>Giá niêm yết</p>
+          <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-slate-500  dark:text-slate-500">
+            {isFreeItem ? t('text-free') : price}
+          </span>
+        </div>
+        <div className="flex items-center justify-between">
+          <p className="text-brand">Giá dành cho thành viên Tomiru</p>
+          <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-brand ">
+            {salePrice}
+          </span>
+        </div>
       </div>
     </motion.div>
   );
