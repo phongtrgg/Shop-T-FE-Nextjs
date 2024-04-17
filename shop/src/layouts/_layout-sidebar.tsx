@@ -164,12 +164,12 @@ export function Sidebar({
           >
             {t('text-privacy')}
           </ActiveLink>
-          <ActiveLink
+          {/* <ActiveLink
             href={routes.help}
             className="block py-2 text-dark-700 hover:text-dark-100 dark:hover:text-brand"
           >
             {t('text-help-page-title')}
-          </ActiveLink>
+          </ActiveLink> */}
         </nav>
         <Copyright className="px-1 text-xs font-medium text-dark-800/80 dark:text-dark-700" />
       </footer>
