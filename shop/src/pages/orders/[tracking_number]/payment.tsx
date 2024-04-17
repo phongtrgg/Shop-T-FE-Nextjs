@@ -32,6 +32,7 @@ import OrderOTP from '@/components/otp/otp-popup';
 import { useState } from 'react';
 import Image from '@/components/ui/image';
 import { refreshOrderPageAtom } from '@/components/cart/lib/checkout';
+
 import { useAtom } from 'jotai';
 type Props = {
   title: string;
@@ -71,6 +72,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
   const { t } = useTranslation('common');
   const { width, height } = useWindowSize();
   const [showOTP, setShowOTP] = useState(false);
+
   const { resetCart } = useCart();
   useEffect(() => {
     resetCart();
