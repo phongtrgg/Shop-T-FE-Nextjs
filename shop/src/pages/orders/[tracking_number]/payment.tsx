@@ -31,6 +31,8 @@ import { getOrderPaymentSummery } from '@/lib/get-order-payment-summery';
 import OrderOTP from '@/components/otp/otp-popup';
 import { useState } from 'react';
 import Image from '@/components/ui/image';
+import { refreshOrderPageAtom } from '@/components/cart/lib/checkout';
+import { useAtom } from 'jotai';
 type Props = {
   title: string;
   details: string | undefined | number;
@@ -272,14 +274,21 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
 };
 
 const OrderPage: NextPageWithLayout = () => {
+  const [refreshOrder, setRefreshOrder] = useAtom(refreshOrderPageAtom);
   const { query } = useRouter();
   const { openModal } = useModalAction();
-  const { order, isLoading, error, isFetching } = useOrder({
+  const { order, isLoading, error, isFetching, refetch } = useOrder({
     tracking_number: query.tracking_number!.toString(),
   });
 
   const { payment_status, payment_intent, tracking_number } = order ?? {};
 
+  useEffect(() => {
+    if (refreshOrder === true) {
+      refetch();
+      setRefreshOrder(false);
+    }
+  }, [refreshOrder]);
   useEffect(() => {
     if (
       payment_status === PaymentStatus.PENDING &&

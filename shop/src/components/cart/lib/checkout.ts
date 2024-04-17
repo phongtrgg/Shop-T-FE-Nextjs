@@ -31,7 +31,7 @@ export const paymentGatewayAtom = atom(
   (get, set, data: PaymentGateway) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, payment_gateway: data });
-  }
+  },
 );
 
 export const customerContactAtom = atom(
@@ -39,7 +39,7 @@ export const customerContactAtom = atom(
   (get, set, data: string) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, customer_contact: data });
-  }
+  },
 );
 
 export const verifiedResponseAtom = atom(
@@ -47,7 +47,7 @@ export const verifiedResponseAtom = atom(
   (get, set, data: VerifiedResponse | null) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, verified_response: data });
-  }
+  },
 );
 
 export const walletAtom = atom(
@@ -55,7 +55,7 @@ export const walletAtom = atom(
   (get, set) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, use_wallet: !prev.use_wallet });
-  }
+  },
 );
 
 // export const payableAmountAtom = atom(
@@ -69,3 +69,5 @@ export const walletAtom = atom(
 export const useWalletPointsAtom = atom<boolean>(false);
 export const payableAmountAtom = atom<number>(0);
 export const verifiedTokenAtom = atom<string | null>(null);
+
+export const refreshOrderPageAtom = atom<boolean>(false);

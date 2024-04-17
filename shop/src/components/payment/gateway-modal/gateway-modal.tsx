@@ -21,7 +21,10 @@ import cn from 'classnames';
 import CoinbaseIcon from '@/components/icons/payment-gateways/coinbase';
 import { useIsDarkMode } from '@/lib/hooks/use-is-dark-mode';
 import { useAtom } from 'jotai';
-import { paymentGatewayAtom } from '@/components/cart/lib/checkout';
+import {
+  paymentGatewayAtom,
+  refreshOrderPageAtom,
+} from '@/components/cart/lib/checkout';
 import { TomxuIcon } from '@/components/icons/payment-gateways/tomxu';
 import { CashIcon } from '@/components/icons/payment-gateways/cash';
 import { BankingIcon } from '@/components/icons/payment-gateways/banking';
@@ -30,7 +33,7 @@ import { MomoIcon } from '@/components/icons/payment-gateways/momo';
 import { VnpayIcon } from '@/components/icons/payment-gateways/vnpay';
 import { useModalAction } from '@/components/modal-views/context';
 import { toast } from 'react-hot-toast';
-import { Router, useRouter } from 'next/router';
+
 interface IProps {
   theme?: string;
   settings: any;
@@ -258,6 +261,7 @@ const GatewayModal = () => {
   const {
     data: { order },
   } = useModalState();
+  const [refreshOrder, setRefreshOrder] = useAtom(refreshOrderPageAtom);
   const [gateway, setGateway] = useAtom(paymentGatewayAtom);
   const { settings } = useSettings();
   const { isLoading, getPaymentIntentQuery, data } = useGetPaymentIntent({
@@ -268,14 +272,15 @@ const GatewayModal = () => {
   });
 
   const handleSubmit = async () => {
-    await getPaymentIntentQuery();
-    if (data) {
-      toast.success(
-        'Đã đổi phương thanh toán thành ' + data.order.payment_gateway,
-      );
-    }
-
-    closeModal();
+    await getPaymentIntentQuery()
+      .then(() => {
+        toast.success('Đã đổi phương thức thành công');
+        setRefreshOrder(true);
+        closeModal();
+      })
+      .catch(() => {
+        toast.error('Thay đổi thất bại, quý khách vui lòng thử lại sau');
+      });
   };
 
   // check and set disabled already chosen gateway
