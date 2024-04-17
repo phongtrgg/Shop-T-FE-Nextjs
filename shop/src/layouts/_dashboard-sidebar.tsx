@@ -20,24 +20,24 @@ import { useMe } from '@/data/user';
 import usePrice from '@/lib/hooks/use-price';
 
 const menuItems = [
-  {
-    id: 1,
-    icon: <UserIconAlt className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />,
-    label: 'text-auth-profile',
-    path: routes.profile,
-  },
+  // {
+  //   id: 1,
+  //   icon: <UserIconAlt className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />,
+  //   label: 'text-auth-profile',
+  //   path: routes.profile,
+  // },
   {
     id: 2,
     icon: <PurchaseIcon className="h-[15px] w-[15px] sm:h-4 sm:w-4" />,
-    label: 'text-auth-purchase',
+    label: 'Đơn hàng của tôi',
     path: routes.purchases,
   },
-  {
-    id: 3,
-    icon: <CreditCardIcon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />,
-    label: 'text-auth-cards',
-    path: routes.cards,
-  },
+  // {
+  //   id: 3,
+  //   icon: <CreditCardIcon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />,
+  //   label: 'text-auth-cards',
+  //   path: routes.cards,
+  // },
   {
     id: 4,
     icon: <HeartFillIcon className="h-[15px] w-[15px] sm:h-4 sm:w-4" />,
@@ -62,18 +62,18 @@ const menuItems = [
     label: 'text-followed-authors',
     path: routes.followedShop,
   },
-  {
-    id: 8,
-    icon: <LockIcon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />,
-    label: 'text-auth-password',
-    path: routes.password,
-  },
-  {
-    id: 9,
-    icon: <CreditCardIcon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />,
-    label: 'Wallet',
-    path: routes.wallet,
-  },
+  // {
+  //   id: 8,
+  //   icon: <LockIcon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />,
+  //   label: 'text-auth-password',
+  //   path: routes.password,
+  // },
+  // {
+  //   id: 9,
+  //   icon: <CreditCardIcon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />,
+  //   label: 'Wallet',
+  //   path: routes.wallet,
+  // },
 ];
 
 function SidebarNav() {
@@ -99,7 +99,7 @@ function SidebarNav() {
             </span>
           </ActiveLink>
         ))}
-        <button
+        {/* <button
           onClick={() => logout()}
           className="flex w-full items-center gap-2.5 px-6 py-3.5 text-left hover:text-dark focus:text-dark dark:hover:text-light dark:focus:text-light "
         >
@@ -107,7 +107,7 @@ function SidebarNav() {
           <span className="text-dark-100 dark:text-light-400">
             {t('text-logout')}
           </span>
-        </button>
+        </button> */}
       </nav>
       {me?.wallet ? (
         <>
@@ -197,13 +197,13 @@ function SidebarMobileNav() {
                   </ActiveLink>
                 </Listbox.Option>
               ))}
-              <button
+              {/* <button
                 onClick={() => logout()}
                 className="flex w-full items-center gap-2.5 px-4 py-2 text-left text-13px hover:text-dark focus:text-dark dark:hover:text-light dark:focus:text-light sm:px-5 sm:py-3 sm:text-sm md:py-3.5 "
               >
                 <LogoutIcon className="h-5 w-5" />
                 {t('text-logout')}
-              </button>
+              </button> */}
             </Listbox.Options>
           </Transition>
         </div>

@@ -40,7 +40,7 @@ export default function AuthorizedMenu({ user }: { user: User }) {
               </ActiveLink>
             </Menu.Item>
           ))}
-          <Menu.Item>
+          {/* <Menu.Item>
             <button
               type="button"
               className="transition-fill-colors w-full px-5 py-2.5 hover:bg-light-400 ltr:text-left rtl:text-right dark:hover:bg-dark-600"
@@ -48,7 +48,7 @@ export default function AuthorizedMenu({ user }: { user: User }) {
             >
               {t('text-logout')}
             </button>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu.Items>
       </Transition>
     </Menu>

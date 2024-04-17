@@ -28,12 +28,12 @@ export function getDirection(language: string | undefined) {
 }
 
 export const AuthorizedMenuItems = [
+  // {
+  //   label: 'text-auth-profile',
+  //   path: routes.profile,
+  // },
   {
-    label: 'text-auth-profile',
-    path: routes.profile,
-  },
-  {
-    label: 'text-auth-purchase',
+    label: 'Đơn hàng của tôi',
     path: routes.purchases,
   },
   {
@@ -44,8 +44,8 @@ export const AuthorizedMenuItems = [
     label: 'text-followed-authors',
     path: routes.followedShop,
   },
-  {
-    label: 'text-auth-password',
-    path: routes.password,
-  },
+  // {
+  //   label: 'text-auth-password',
+  //   path: routes.password,
+  // },
 ];

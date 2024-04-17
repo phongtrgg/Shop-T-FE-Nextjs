@@ -29,7 +29,7 @@ const CheckoutPage: NextPageWithLayout = () => {
   const { t } = useTranslation('common');
   const userContact = me?.profile?.contact;
   const userGmail = me?.email;
-  const userName = me?.name;
+  const userName = `${me?.first_name}  ${me?.last_name}`;
   const phoneValue = userContact?.slice(2);
   const fullName = useRef<HTMLInputElement>(null);
   const gmail = useRef<HTMLInputElement>(null);

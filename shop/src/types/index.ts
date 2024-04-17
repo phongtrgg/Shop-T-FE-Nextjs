@@ -219,6 +219,8 @@ export interface User {
   last_order: Order;
   email?: any;
   default_otp_type?: any;
+  last_name: string;
+  first_name: string;
 }
 
 export interface UpdateProfileInput {

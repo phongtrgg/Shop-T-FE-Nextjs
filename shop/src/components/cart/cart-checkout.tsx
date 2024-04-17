@@ -71,7 +71,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       toast.error(<b>{t('text-profile-page-error-toast')}</b>);
     },
   });
-
+  console.log(me);
   const [{ payment_gateway }] = useAtom(checkoutAtom);
   const [use_wallet_points] = useAtom(useWalletPointsAtom);
   const [payableAmount] = useAtom(payableAmountAtom);
