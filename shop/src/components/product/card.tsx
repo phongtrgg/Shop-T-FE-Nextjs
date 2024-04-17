@@ -128,11 +128,11 @@ export default function Card({ product }: { product: Product }) {
           {/* <span className="rounded-2xl px-1.5 py-0.5 text-12px font-semibold uppercase text-brand dark:bg-dark-300 dark:text-brand-dark">
             {product.tomxu} tomxu
           </span> */}
-          {!isFreeItem && basePrice && (
+          {/* {!isFreeItem && basePrice && (
             <del className="px-1 text-13px font-medium text-dark-900 dark:text-dark-700">
               {basePrice}
             </del>
-          )}
+          )} */}
         </div>
       </div>
       <div className="mt-2">
