@@ -24,7 +24,7 @@ const LicensingPage: NextPageWithLayout = () => {
           subtitle={t('text-license-page-subtitle')}
         />
         <GeneralContainer>
-          {licensingData?.map((item) => (
+          {/* {licensingData?.map((item) => (
             <div
               key={item.id}
               className="order-list-enable mb-8 last:mb-0 lg:mb-10"
@@ -39,7 +39,7 @@ const LicensingPage: NextPageWithLayout = () => {
                 }}
               />
             </div>
-          ))}
+          ))} */}
         </GeneralContainer>
       </div>
     </>

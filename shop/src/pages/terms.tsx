@@ -56,7 +56,7 @@ const TermsPage: NextPageWithLayout = () => {
             subtitle={`Last updated on ${
               getLastUpdateTermsDate
                 ? dayjs(new Date(getLastUpdateTermsDate as string)).format(
-                    'MMMM D, YYYY'
+                    'MMMM D, YYYY',
                   )
                 : ''
             }`}

@@ -12,6 +12,7 @@ import { useTranslation } from 'next-i18next';
 import { useMutation } from 'react-query';
 import client from '@/data/client';
 import { useMe } from '@/data/user';
+import useUserTomxu from '@/lib/hooks/use-user-tomxu';
 interface Props {
   totalPrice: number;
   walletAmount: number;
@@ -24,10 +25,10 @@ export default function CartWallet({
   walletAmount,
   walletCurrency,
 }: Props) {
-  const { encryptData, data: aesData, key, iv } = useCryptData();
+  const { userTomxu } = useUserTomxu();
   const { t } = useTranslation('common');
   const { me } = useMe();
-  const [userTomxu, setUserTomxu] = useState(0);
+
   const [use_wallet, setUseWallet] = useAtom(useWalletPointsAtom);
   const [calculatePayableAmount, setCalculatePayableAmount] =
     useAtom(payableAmountAtom);
@@ -60,35 +61,6 @@ export default function CartWallet({
       setCalculatePayableAmount(0);
     }
   }, [setCalculatePayableAmount, totalPrice, use_wallet, walletCurrency]);
-  let enData: any;
-  useEffect(() => {
-    if (me?.id && me?.email) {
-      enData = '458875' + me?.id + me.email;
-    }
-    if (me?.id && me?.email && aesData) {
-      getUserTomxu();
-    }
-  }, [me, aesData]);
-  useEffect(() => {
-    if (enData) {
-      encryptData(enData, key, iv);
-    }
-  }, [enData]);
-
-  const { mutate: getTomxu } = useMutation(client.userTomxu.getTomxu, {
-    onSuccess: (res: any) => {
-      setUserTomxu(res?.data.balance);
-    },
-    onError: (error: any) => {},
-  });
-  function getUserTomxu() {
-    getTomxu({
-      customer_id: me?.id,
-      type: 1,
-      secret_token: aesData,
-      email: me?.email,
-    });
-  }
 
   return (
     <div>

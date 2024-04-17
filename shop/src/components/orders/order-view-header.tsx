@@ -8,6 +8,8 @@ import { SpinnerLoader } from '@/components/ui/loader/spinner/spinner';
 import { useSettings } from '@/data/settings';
 import ChangeGateway from '../payment/gateway-modal/change-gateway';
 import Button from '@/components/ui/button';
+import useUserTomxu from '@/lib/hooks/use-user-tomxu';
+import toast from 'react-hot-toast';
 interface OrderViewHeaderProps {
   order: any;
   wrapperClassName?: string;
@@ -30,7 +32,15 @@ export default function OrderViewHeader({
     order?.order_status,
     order?.payment_status,
   );
-
+  const { userTomxu } = useUserTomxu();
+  console.log(order);
+  function openModalOTP() {
+    if (userTomxu > order.total_tomxu) {
+      action(true);
+    } else {
+      toast.error('Số dư ví của quý khách không đủ');
+    }
+  }
   return (
     <div className={cn(`bg-[#F7F8FA] dark:bg-[#333333] ${wrapperClassName}`)}>
       <div className="text-heading mb-0 flex flex-col flex-wrap items-center gap-x-8 text-base font-bold sm:flex-row md:flex-nowrap">
@@ -83,9 +93,7 @@ export default function OrderViewHeader({
           {order?.payment_gateway === 'TOMXU' && (
             <Button
               className="w-full text-13px md:px-3 bg-orange-400 rounded-full hover:opacity-80 hover:bg-orange-400 active:bg-orange-400 active:scale-105"
-              onClick={() => {
-                action(true);
-              }}
+              onClick={openModalOTP}
             >
               {t('text-pay-now')}
             </Button>
