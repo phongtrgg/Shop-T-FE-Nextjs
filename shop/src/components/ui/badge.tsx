@@ -36,6 +36,7 @@ const Badge: React.FC<BadgeProps> = ({
         textColorOverride,
         className,
         'inline-flex',
+        'dark:text-white',
       )}
       style={style}
     >
