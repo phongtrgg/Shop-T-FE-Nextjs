@@ -71,7 +71,6 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       toast.error(<b>{t('text-profile-page-error-toast')}</b>);
     },
   });
-  console.log(me);
   const [{ payment_gateway }] = useAtom(checkoutAtom);
   const [use_wallet_points] = useAtom(useWalletPointsAtom);
   const [payableAmount] = useAtom(payableAmountAtom);
@@ -156,7 +155,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
     if (!gateWay) {
       return toast.error('Bạn hãy chọn hình thức thanh toán');
     }
-    mutate({
+    const senData = {
       amount: base_amount,
       total: totalPrice,
       paid_total: totalPrice,
@@ -177,7 +176,8 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       customer_name,
       address,
       email,
-    });
+    };
+    mutate(senData);
     Cookies.remove(REVIEW_POPUP_MODAL_KEY);
   }
   const [isDisabled, setIsDisabled] = useState(true);

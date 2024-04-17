@@ -11,12 +11,14 @@ import Avatar from '@/components/ui/avatar';
 export default function AuthorizedMenu({ user }: { user: User }) {
   const { mutate: logout } = useLogout();
   const { t } = useTranslation('common');
+  const defaultName = `${user?.first_name} ${user?.last_name}`;
+
   return (
     <Menu>
       <Menu.Button className="relative inline-flex h-8 w-8 justify-center rounded-full border border-light-400 bg-light-300 dark:border-dark-500 dark:bg-dark-500">
         <Avatar
           size="sm"
-          name={user?.name}
+          name={defaultName}
           src={user?.profile?.avatar?.thumbnail}
         />
       </Menu.Button>
