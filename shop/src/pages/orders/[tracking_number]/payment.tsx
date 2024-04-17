@@ -53,10 +53,10 @@ const Card = ({ title, details }: Props) => {
 
 const Listitem = ({ title, details }: Props) => {
   return (
-    <p className="text-body-dark mt-5 flex items-center text-xs">
+    <p className="text-body-dark mt-5 flex items-center text-base">
       <strong className="w-5/12 sm:w-4/12">{title}</strong>
       <span>:</span>
-      <span className="w-7/12 ltr:pl-4 rtl:pr-4 dark:text-white sm:w-8/12 ">
+      <span className="w-7/12 ltr:pl-4 rtl:pr-4 dark:text-white sm:w-8/12 text-base ">
         {details}
       </span>
     </p>
@@ -112,7 +112,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
             loading={loadingStatus}
             action={setShowOTP}
           />
-          <div className="bg-light px-6 pb-12 pt-9 dark:bg-dark-200 lg:px-8">
+          <div className="bg-light px-6 pb-12 pt-2 dark:bg-dark-200 lg:px-8">
             {paymentGatway !== 'TOMXU' && (
               <div className="leading-1 my-10 ">
                 <h1 className="text-xl font-semibold my-5">
@@ -121,27 +121,29 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
                 </h1>
                 <div className="flex flex-col md:flex-row  items-center justify-around border-solid border-2 rounded-md shadow bg-white py-6 gap-6">
                   <div className="leading-1  flex flex-col gap-3  ">
-                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10 text-base">
                       Ngân hàng :
                       <span className="font-semibold mx-5 ">TECHCOMBANK</span>
                     </div>
-                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10 text-base">
                       Số Tài Khoản :
                       <span className="font-semibold text-red-500 text-lg mx-5">
-                        123456789
+                        19029648516011
                       </span>
                     </div>
-                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10 text-base">
                       Chủ tài khoản :
-                      <span className="font-semibold mx-5">Tomiru</span>
+                      <span className="font-semibold mx-5">
+                        Nguyễn Hữu Kiên
+                      </span>
                     </div>
-                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10 text-base">
                       Số tiền :
                       <span className="font-semibold mx-5 text-red-500 text-xl">
                         {total}
                       </span>
                     </div>
-                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10">
+                    <div className="flex ml-2 md:ml-0 items-center justify-between gap-10 text-base">
                       Nội dung :
                       <span className="font-semibold  mx-5">
                         {order?.tracking_number}
@@ -151,7 +153,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
 
                   <div>
                     <Image
-                      src="/icons/tcbqr.jpg"
+                      src="/icons/qr_nhk.png"
                       alt="tcb-img"
                       width={`${200}`}
                       height={`${200}`}
@@ -161,7 +163,7 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               </div>
             )}
             {/* CARD */}
-            <div className="mb-6 grid gap-4 sm:grid-cols-2 md:mb-12 lg:grid-cols-4">
+            <div className="mb-6 grid gap-4 sm:grid-cols-2 md:mb-12 lg:grid-cols-4 text-base">
               <Card
                 title={t('text-order-number')}
                 details={order?.tracking_number}
@@ -184,10 +186,10 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               />
             </div>
 
-            <div className="mt-12 flex flex-col justify-around md:flex-row xs:flex-col gap-20">
+            <div className="mt-12 flex flex-col justify-around md:flex-row xs:flex-col gap-10 text-base">
               <div className="w-full md:w-1/2 ltr:md:pl-3 rtl:md:pr-3">
                 {/* <div className="w-full md:w-1/2 ltr:md:pl-3 rtl:md:pr-3"> */}
-                <h2 className="mb-6 text-base font-medium dark:text-white">
+                <h2 className="mb-6 text-lg font-medium dark:text-white ">
                   {t('text-order-status')}
                 </h2>
                 <div>
@@ -199,12 +201,12 @@ const OrderView = ({ order, loadingStatus }: OrderViewProps) => {
               </div>
               {/* end of order details */}
 
-              <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3   ">
+              <div className="mb-10  w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3 text-base   ">
                 {/* <div className="mb-10 w-full md:mb-0 md:w-1/2 ltr:md:pl-3 rtl:md:pl-3"> */}
-                <h2 className="mb-6 text-base font-medium dark:text-white">
+                <h2 className="mb-0 md:mb-6 text-base font-medium dark:text-white ">
                   {t('text-order-details')}
                 </h2>
-                <div className="">
+                <div className="text-base">
                   <Listitem title={t('text-total-item')} details={formatItem} />
                   <Listitem title={'Đơn giá'} details={sub_total} />
                   <Listitem title={t('text-tax')} details={tax} />

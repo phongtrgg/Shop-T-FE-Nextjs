@@ -15,7 +15,7 @@ const ProgressBox: React.FC<ProgressProps> = ({
   filledIndex,
 }) => {
   return (
-    <div className="flex w-full flex-col items-start">
+    <div className="flex w-full flex-col items-start ">
       {data?.map((item: any, index) => (
         <div
           className={styles.progress_container}
@@ -52,7 +52,7 @@ const ProgressBox: React.FC<ProgressProps> = ({
             )}
           >
             {item && (
-              <span className="text-13px font-normal">{item?.name}</span>
+              <span className="text-16px font-normal">{item?.name}</span>
             )}
           </div>
         </div>
