@@ -23,7 +23,7 @@ const PrivacyPage: NextPageWithLayout = () => {
           subtitle={t('text-privacy-page-subtitle')}
         />
         <GeneralContainer>
-          {privacyPolicy?.map((item) => (
+          {/* {privacyPolicy?.map((item) => (
             <div
               key={item.id}
               className="order-list-enable mb-8 last:mb-0 lg:mb-10"
@@ -38,7 +38,7 @@ const PrivacyPage: NextPageWithLayout = () => {
                 }}
               />
             </div>
-          ))}
+          ))} */}
         </GeneralContainer>
       </div>
     </>
