@@ -153,7 +153,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = ({
       ? PaymentGateway.FULL_WALLET_PAYMENT
       : payment_gateway;
 
-    if (!isFullWalletPayment) {
+    if (!gateWay) {
       return toast.error('Bạn hãy chọn hình thức thanh toán');
     }
     mutate({
