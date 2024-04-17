@@ -19,7 +19,7 @@ const Badge: React.FC<BadgeProps> = ({
   const { t } = useTranslation();
 
   const classes = {
-    root: 'px-3 py-1 rounded-full text-sm',
+    root: 'px-3 py-1 rounded-full text-sm text-black',
     default: 'bg-accent',
     text: 'text-light',
   };
@@ -28,14 +28,14 @@ const Badge: React.FC<BadgeProps> = ({
     <span
       className={cn(
         classes.root,
-        {
-          [classes.default]: !colorOverride,
-          [classes.text]: !textColorOverride,
-        },
+        // {
+        //   [classes.default]: !colorOverride,
+        //   [classes.text]: !textColorOverride,
+        // },
         colorOverride,
         textColorOverride,
         className,
-        'inline-flex'
+        'inline-flex',
       )}
       style={style}
     >

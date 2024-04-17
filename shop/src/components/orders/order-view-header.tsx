@@ -49,7 +49,7 @@ export default function OrderViewHeader({
               ) : (
                 <Badge
                   text={t(order?.order_status)}
-                  color={StatusColor(order?.order_status)}
+                  // color={StatusColor(order?.order_status)}
                   className="flex min-h-[1.4375rem] items-center justify-center text-[9px] font-bold uppercase !leading-[1.3em] xs:text-xs lg:px-2"
                 />
               )}
@@ -65,7 +65,7 @@ export default function OrderViewHeader({
               ) : (
                 <Badge
                   text={t(order?.payment_status)}
-                  color={StatusColor(order?.payment_status)}
+                  // color={StatusColor(order?.payment_status)}
                   className="flex min-h-[1.4375rem] items-center justify-center text-[9px] font-bold uppercase !leading-[1.3em] xs:text-xs lg:px-2"
                 />
               )}
@@ -82,7 +82,7 @@ export default function OrderViewHeader({
             )} */}
           {order?.payment_gateway === 'TOMXU' && (
             <Button
-              className="w-full text-13px md:px-3"
+              className="w-full text-13px md:px-3 bg-orange-400 rounded-full hover:opacity-80 hover:bg-orange-400 active:bg-orange-400 active:scale-105"
               onClick={() => {
                 action(true);
               }}

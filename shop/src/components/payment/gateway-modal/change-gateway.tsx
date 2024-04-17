@@ -1,3 +1,4 @@
+import { UpdateIcon } from '@/components/icons/update-icon';
 import { useModalAction } from '@/components/modal-views/context';
 import Button from '@/components/ui/button';
 import { Order } from '@/types';
@@ -19,8 +20,12 @@ const ChangeGateway: React.FC<Props> = ({ order }) => {
   };
 
   return (
-    <Button className="w-full" onClick={handleChangePaymentGateway}>
-      Đổi phương thức thanh toán
+    <Button
+      className="w-full rounded-full bg-transparent border-2 border-gray-300 hover:bg-transparent hover:border-4 active:bg-transparent "
+      onClick={handleChangePaymentGateway}
+    >
+      <UpdateIcon className="h-[18px] w-[18px]" />
+      <span className="text-gray-500 dark:text-white">Đổi phương thức TT</span>
     </Button>
   );
 };
