@@ -24,6 +24,9 @@ export default function Card({ product }: { product: Product }) {
     amount: product.sale_price ? product.sale_price : product.price,
     baseAmount: product.price,
   });
+  const { price: salePrice } = usePrice({
+    amount: product.sale_price,
+  });
   const goToDetailsPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     Router.push(routes.productUrl(slug));
@@ -122,18 +125,27 @@ export default function Card({ product }: { product: Product }) {
         </div>
 
         <div className="flex flex-shrink-0 flex-col items-end pl-2.5">
-          <span className="rounded-2xl bg-light-500 px-1.5 py-0.5 text-13px font-semibold uppercase text-brand dark:bg-dark-300 dark:text-brand-dark">
-            {isFreeItem ? t('text-free') : price}
-          </span>
-          <span className="rounded-2xl px-1.5 py-0.5 text-12px font-semibold uppercase text-brand dark:bg-dark-300 dark:text-brand-dark">
+          {/* <span className="rounded-2xl px-1.5 py-0.5 text-12px font-semibold uppercase text-brand dark:bg-dark-300 dark:text-brand-dark">
             {product.tomxu} tomxu
-          </span>
+          </span> */}
           {!isFreeItem && basePrice && (
             <del className="px-1 text-13px font-medium text-dark-900 dark:text-dark-700">
               {basePrice}
             </del>
           )}
         </div>
+      </div>
+      <div className="flex justify-between">
+        <p>Giá niêm yết</p>
+        <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-slate-500  dark:text-slate-500">
+          {isFreeItem ? t('text-free') : price}
+        </span>
+      </div>
+      <div className="flex justify-between">
+        <p className="text-brand">Giá dành cho thành viên Tomiru</p>
+        <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-brand ">
+          {salePrice}
+        </span>
       </div>
     </motion.div>
   );

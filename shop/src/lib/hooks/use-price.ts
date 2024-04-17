@@ -49,7 +49,7 @@ export default function usePrice(
     amount: number;
     baseAmount?: number;
     currencyCode?: string;
-  } | null
+  } | null,
 ) {
   const { settings } = useSettings();
   const { locale: currentLocale } = useRouter();
