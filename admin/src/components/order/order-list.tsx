@@ -66,7 +66,9 @@ const OrderList = ({
   const onHeaderClick = (column: string | null) => ({
     onClick: () => {
       onSort((currentSortDirection: SortOrder) =>
-        currentSortDirection === SortOrder.Desc ? SortOrder.Asc : SortOrder.Desc
+        currentSortDirection === SortOrder.Desc
+          ? SortOrder.Asc
+          : SortOrder.Desc,
       );
       onOrder(column!);
 
@@ -235,7 +237,7 @@ const OrderList = ({
             <ActionButtons
               id={id}
               detailsUrl={`${router.asPath}/${id}`}
-              customLocale={order.language}
+              // customLocale={order.language}
             />
           </>
         );

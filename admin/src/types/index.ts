@@ -650,6 +650,7 @@ export interface Order {
   shop_id?: string;
   shop?: Shop;
   note?: string;
+  address?: string;
 }
 
 export interface NotifyLogs {
@@ -1233,7 +1234,6 @@ export interface SettingsOptions {
   defaultPaymentGateway?: string;
   useOtp?: boolean;
   useAi?: boolean;
-  defaultAi?: string;
   contactDetails?: ContactDetails;
   minimumOrderAmount?: number;
   currencyToWalletRatio?: number;
@@ -1266,10 +1266,6 @@ export interface SettingsOptions {
   isPromoPopUp?: boolean;
   promoPopup?: PromoPopupFormValues;
   reviewSystem?: string;
-  useGoogleMap?: boolean;
-  isProductReview?: boolean;
-  freeShipping?: boolean;
-  freeShippingAmount?: number;
 }
 
 // *************** OLD Code ***************

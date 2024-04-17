@@ -25,7 +25,7 @@ export const siteSettings = {
     width: 32,
     height: 32,
   },
-  defaultLanguage: 'en',
+  defaultLanguage: 'vi',
   author: {
     name: 'RedQ',
     websiteUrl: 'https://redq.io',

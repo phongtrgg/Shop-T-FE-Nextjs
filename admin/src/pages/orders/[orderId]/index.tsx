@@ -61,7 +61,7 @@ export default function OrderDetailsPage() {
       isRTL,
       language: locale!,
     },
-    { enabled: false }
+    { enabled: false },
   );
 
   const {
@@ -82,28 +82,28 @@ export default function OrderDetailsPage() {
   const { price: subtotal } = usePrice(
     order && {
       amount: order?.amount!,
-    }
+    },
   );
 
   const { price: total } = usePrice(
     order && {
       amount: order?.paid_total!,
-    }
+    },
   );
   const { price: discount } = usePrice(
     order && {
       amount: order?.discount! ?? 0,
-    }
+    },
   );
   const { price: delivery_fee } = usePrice(
     order && {
       amount: order?.delivery_fee!,
-    }
+    },
   );
   const { price: sales_tax } = usePrice(
     order && {
       amount: order?.sales_tax!,
-    }
+    },
   );
   const { price: sub_total } = usePrice({ amount: order?.amount! });
   const { price: shipping_charge } = usePrice({
@@ -123,7 +123,7 @@ export default function OrderDetailsPage() {
   const totalItem = order?.products.reduce(
     // @ts-ignore
     (initial = 0, p) => initial + parseInt(p?.pivot?.order_quantity!),
-    0
+    0,
   );
 
   const phoneNumber = useFormatPhoneNumber({
@@ -191,7 +191,7 @@ export default function OrderDetailsPage() {
   ];
 
   // TODO : this area need to be checked in Pixer
-
+  console.log(order);
   return (
     <>
       <Card className="relative overflow-hidden">
@@ -228,7 +228,10 @@ export default function OrderDetailsPage() {
                   getOptionLabel={(option: any) => t(option.name)}
                   getOptionValue={(option: any) => option.status}
                   options={ORDER_STATUS.slice(0, 6)}
-                  placeholder={t(`text-${order?.order_status}`) ?? t('form:input-placeholder-order-status')}
+                  placeholder={
+                    t(`text-${order?.order_status}`) ??
+                    t('form:input-placeholder-order-status')
+                  }
                 />
 
                 <ValidationError message={t(errors?.order_status?.message)} />
@@ -382,10 +385,14 @@ export default function OrderDetailsPage() {
 
             <div className="flex flex-col items-start space-y-1 text-sm text-body text-start sm:items-end sm:text-end">
               <span>{order?.customer_name}</span>
-              {order?.shipping_address && (
+              {/* {order?.shipping_address && (
                 <span>{formatAddress(order.shipping_address)}</span>
+              )} */}
+              {/* {order?.customer_contact && <span>{phoneNumber}</span>} */}
+              {order?.address && <span>{order.address}</span>}
+              {order?.customer_contact && (
+                <span>{order?.customer_contact}</span>
               )}
-              {order?.customer_contact && <span>{phoneNumber}</span>}
             </div>
           </div>
         </div>
