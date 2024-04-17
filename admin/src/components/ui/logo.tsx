@@ -37,10 +37,7 @@ const Logo: React.FC<React.AnchorHTMLAttributes<{}>> = ({
           }}
         >
           <Image
-            src={
-              settings?.options?.collapseLogo?.original ??
-              siteSettings.collapseLogo.url
-            }
+            src={'/image/logo.png'}
             alt={settings?.options?.siteTitle ?? siteSettings.collapseLogo.alt}
             fill
             sizes="(max-width: 768px) 100vw"
@@ -57,7 +54,7 @@ const Logo: React.FC<React.AnchorHTMLAttributes<{}>> = ({
           }}
         >
           <Image
-            src={settings?.options?.logo?.original ?? siteSettings.logo.url}
+            src={'/image/logo.png'}
             alt={settings?.options?.siteTitle ?? siteSettings.logo.alt}
             fill
             sizes="(max-width: 768px) 100vw"
