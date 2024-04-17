@@ -126,6 +126,17 @@ export function Sidebar({
                 <PaperPlaneIcon className="h-[18px] w-[18px] text-current" />
               }
             />
+            <div className=" flex sm:hidden items-center justify-center mt-5   ">
+              <a
+                // href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
+                href="https://app.tomiru.com"
+                target="_blank"
+                rel="noreferrer"
+                className="focus:ring-accent-700 shrink-0 items-center justify-center rounded border border-transparent bg-brand px-3 py-5 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-brand-dark focus:shadow focus:outline-none focus:ring-1 "
+              >
+                {t('text-become-seller')}
+              </a>
+            </div>
           </nav>
 
           <nav className="mt-auto flex flex-col pb-4">
@@ -184,6 +195,9 @@ export default function SidebarDrawerView() {
     <>
       <div className="flex h-[70px] items-center justify-between py-2 px-5 xs:px-7">
         <Logo />
+
+        <h1 className="font-bold text-2xl mt-1 cursor-pointer">TOMIRU</h1>
+
         <div className="ml-3 flex h-7 items-center">
           <button
             type="button"
@@ -195,6 +209,7 @@ export default function SidebarDrawerView() {
           </button>
         </div>
       </div>
+
       <Sidebar isCollapse={true} className="flex text-13px" />
     </>
   );
