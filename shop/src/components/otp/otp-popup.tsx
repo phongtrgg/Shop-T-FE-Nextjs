@@ -12,6 +12,7 @@ import useCountdownTimer from '@/lib/hooks/use-CountdownTimer';
 import OtpInput from '@/components/otp/otp-input';
 import OptionOTP from '@/components/otp/optionOTP';
 import ThankYou from '@/pages/orders/[tracking_number]/thank-you';
+import { CloseIcon, CloseIconNew } from '../icons/close-icon';
 
 const OTPpopup = (props: any) => {
   const [otpValue, setOtpValue] = useState('');
@@ -186,17 +187,7 @@ const OTPpopup = (props: any) => {
               onClick={offTable}
               className="absolute top-1 right-1 border-solid p-3 flex items-center  "
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
-                width="20"
-                height="20"
-              >
-                <path
-                  fill="#ff0000"
-                  d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"
-                />
-              </svg>
+              <CloseIconNew className="h-4 w-4 focus-visible:outline-none lg:h-[18px] lg:w-[18px] 3xl:h-5 3xl:w-5" />
             </button>
             {!changeOption && (
               <div className="mb-8 leading-tight relative h-auto">
@@ -282,7 +273,7 @@ const OTPpopup = (props: any) => {
                     </p>
                   )}
                 </div>
-                <div>
+                {/* <div>
                   <p className="mt-3">
                     Quý khách muốn nhận OTP theo hình thức khác ?
                   </p>
@@ -294,7 +285,7 @@ const OTPpopup = (props: any) => {
                   </button>
 
                   {err && <p className="text-red-500">{err}</p>}
-                </div>
+                </div> */}
               </div>
             )}
             {/* change option OTP */}
