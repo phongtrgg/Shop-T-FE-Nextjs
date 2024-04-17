@@ -26,6 +26,7 @@ import Link from '@/components/ui/link';
 import routes from '@/config/routes';
 import AnchorLink from '@/components/ui/links/anchor-link';
 import { CreditCardIcon } from '@/components/icons/credit-card-icon';
+import { useRouter } from 'next/router';
 
 function OrderedItem({ item }: { item: OrderedFile }) {
   const { t } = useTranslation('common');
@@ -66,6 +67,10 @@ function OrderedItem({ item }: { item: OrderedFile }) {
   const getStatus =
     item?.order?.payment_status === PaymentStatus.SUCCESS ||
     item?.order?.payment_status === PaymentStatus.WALLET;
+  const router = useRouter();
+  const moveOrderPage = () => {
+    router.push(`${routes.orderUrl(item?.tracking_number)}/payment`);
+  };
   return (
     <div className="flex items-start gap-4 border-b border-light-400 py-4 last:border-b-0 dark:border-dark-400 sm:gap-5">
       <AnchorLink href={routes.productUrl(slug)}>
@@ -118,22 +123,22 @@ function OrderedItem({ item }: { item: OrderedFile }) {
                   ? t('text-update-review')
                   : t('text-write-review')}
               </button>
-              <Button onClick={() => mutate(item.digital_file_id)}>
+              {/* <Button onClick={() => mutate(item.digital_file_id)}>
                 <DownloadIcon className="h-auto w-4" />
                 {t('text-download')}
-              </Button>
+              </Button> */}
             </>
           ) : (
-            <PayNowButton
-              tracking_number={tracking_number}
-              // @ts-ignore
-              order={item?.order}
-              variant="card"
-            />
-            // <Button onClick={() => mutate(item.digital_file_id)}>
-            //   <CreditCardIcon className="w-4 h-4" />
-            //   {t('text-pay')}
-            // </Button>
+            // <PayNowButton
+            //   tracking_number={tracking_number}
+            //   // @ts-ignore
+            //   order={item?.order}
+            //   variant="card"
+            // />
+            <Button onClick={moveOrderPage}>
+              <CreditCardIcon className="w-4 h-4" />
+              {t('text-pay-now')}
+            </Button>
           )}
           <div className="relative shrink-0">
             <Menu>
