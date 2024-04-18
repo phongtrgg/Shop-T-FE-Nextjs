@@ -54,7 +54,7 @@ export default function Grid({
             disabled={isLoadingMore}
             isLoading={isLoadingMore}
           >
-            Load more
+            Tải thêm
           </Button>
         </div>
       )}
