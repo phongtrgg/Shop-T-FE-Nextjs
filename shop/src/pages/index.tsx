@@ -101,8 +101,11 @@ const Home: NextPageWithLayout = () => {
   useEffect(() => {
     if (isLogin) {
       push('/');
+    } else {
+      window.location.href = process.env.NEXT_PUBLIC_APP_TOMIRU_URL as string;
     }
   }, [isLogin]);
+
   return (
     <>
       <Seo
@@ -110,8 +113,12 @@ const Home: NextPageWithLayout = () => {
         description="Tomiru E-COMMERCE"
         url={routes.home}
       />
-      <CategoryFilter />
-      <Products />
+      {isLogin === true && (
+        <>
+          <CategoryFilter />
+          <Products />
+        </>
+      )}
     </>
   );
 };

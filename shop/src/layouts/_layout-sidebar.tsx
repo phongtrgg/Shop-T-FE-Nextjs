@@ -129,7 +129,7 @@ export function Sidebar({
             <div className=" flex sm:hidden items-center justify-center mt-5   ">
               <a
                 // href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
-                href="https://app.tomiru.com"
+                href={process.env.NEXT_PUBLIC_REST_API_ENDPOINT}
                 target="_blank"
                 rel="noreferrer"
                 className="focus:ring-accent-700 shrink-0 items-center justify-center rounded border border-transparent bg-brand px-3 py-5 text-sm font-semibold leading-none text-light outline-none transition duration-300 ease-in-out hover:bg-brand-dark focus:shadow focus:outline-none focus:ring-1 "
