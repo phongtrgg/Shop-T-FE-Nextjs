@@ -63,6 +63,7 @@ function Products() {
       ...(query.price && { price: query.price }),
       sortedBy: 'DESC',
     });
+  console.log(products);
   return (
     <Grid
       products={products}

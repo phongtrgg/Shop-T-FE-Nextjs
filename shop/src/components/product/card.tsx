@@ -21,7 +21,7 @@ export default function Card({ product }: { product: Product }) {
   const { openModal } = useModalAction();
   const { isGridCompact } = useGridSwitcher();
   const { price, basePrice } = usePrice({
-    amount: product.sale_price ? product.sale_price : product.price,
+    amount: product.price,
     baseAmount: product.price,
   });
   const { price: salePrice } = usePrice({
