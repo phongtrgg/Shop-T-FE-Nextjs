@@ -221,6 +221,7 @@ export interface User {
   default_otp_type?: any;
   last_name: string;
   first_name: string;
+  phone?: string;
 }
 
 export interface UpdateProfileInput {

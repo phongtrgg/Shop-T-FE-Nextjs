@@ -27,10 +27,10 @@ const CheckoutPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { me } = useMe();
   const { t } = useTranslation('common');
-  const userContact = me?.profile?.contact;
+  const userPhone = me?.phone;
   const userGmail = me?.email;
   const userName = `${me?.first_name} ${me?.last_name}`;
-  const phoneValue = userContact?.slice(2);
+  const phoneValue = userPhone?.slice(3);
   const fullName = useRef<HTMLInputElement>(null);
   const gmail = useRef<HTMLInputElement>(null);
   const phone = useRef<HTMLInputElement>(null);
