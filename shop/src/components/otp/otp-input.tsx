@@ -13,7 +13,6 @@ const OtpInput: React.FC<OtpInputProps> = ({ onComplete, card }) => {
   }, []);
 
   const handleInputChange = (index: number, value: string) => {
-
     if (!isNaN(Number(value)) && value !== '') {
       const nextIndex = index + 1;
       if (nextIndex < inputsRefs.current.length) {

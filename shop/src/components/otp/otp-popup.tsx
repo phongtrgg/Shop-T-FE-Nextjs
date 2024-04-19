@@ -20,7 +20,6 @@ const OTPpopup = (props: any) => {
   const [randomCard, setRandomCard] = useState<any>();
   const { me } = useMe();
   const { t } = useTranslation('common');
-  const OTPref = useRef<any>(null);
   const [thank, setThank] = useState(false);
   const token = '458875' + props.order.customer.id + props.order.customer.email;
   const [selectedOption, setSelectedOption] = useState<any>();
@@ -48,19 +47,22 @@ const OTPpopup = (props: any) => {
   const { mutate, isLoading, data } = useMutation(client.payment.post, {
     onSuccess: (res) => {
       toast.success(<b>{t('payment-success')}</b>);
+      console.log('check res', res);
       setThank(true);
       setIsActive(false);
       setTimeout(() => {
         offTable();
-      }, 15000);
+      }, 10000);
     },
-
+    onSettled: () => {
+      console.log('check settled');
+    },
     onError: (error: any) => {
-      OTPref.current.value = '';
-      toast.error(<b>{t('text-profile-page-error-toast')}</b>);
+      console.log('check err', error);
+      toast.error(<b>{error.response.data.message}</b>);
     },
   });
-
+  console.log(isLoading);
   function offTable() {
     props.showOTP(false);
     setThank(false);
@@ -200,21 +202,19 @@ const OTPpopup = (props: any) => {
                     <>
                       <p>Quý khách vui lòng ấn gửi mã để nhận OTP</p>
                       {!isActive && (
-                        <button
-                          className={`mt-1 border  p-1 rounded-lg  ${
-                            isActive
-                              ? 'pointer-events-none '
-                              : 'border-green-500 bg-green-600 text-white'
-                          }`}
-                          onClick={OTPHandler}
-                        >
-                          {selectedOption === 'card' ? 'Lấy số' : 'Gửi mã'}
-                        </button>
+                        <div className="flex justify-center">
+                          <Button
+                            variant="small"
+                            className={`mt-3 rounded-lg`}
+                            onClick={OTPHandler}
+                          >
+                            {selectedOption === 'card' ? 'Lấy số' : 'Gửi mã'}
+                          </Button>
+                        </div>
                       )}
 
                       {isActive ? (
                         <p>
-                          {' '}
                           <span className="font-bold">OTP</span> đã được gửi về{' '}
                           <span className="font-bold">{me?.email}</span>
                         </p>
@@ -249,7 +249,7 @@ const OTPpopup = (props: any) => {
                 </div>
 
                 <div>
-                  <div className="mt-5">
+                  <div className="mt-3">
                     <OtpInput
                       onComplete={handleOtpComplete}
                       card={selectedOption === 'card' ? true : false}
@@ -300,10 +300,7 @@ const OTPpopup = (props: any) => {
             )}
 
             <div className="flex items-center gap-16">
-              <Button
-                className="bg-red-500 hover:bg-red-300 "
-                onClick={offTable}
-              >
+              <Button variant="solidDanger" onClick={offTable}>
                 {t('text-cancel')}
               </Button>
               <Button
