@@ -88,7 +88,6 @@ const Home: NextPageWithLayout = () => {
   const hashTokenShop = query.hashtokenshop as string;
   const { me } = useMe();
   const [IsVipMember, setIsVipMember] = useAtom(checkIsVipMember);
-  console.log(me);
   useEffect(() => {
     if (me?.package_id === 2 || me?.package_id === 4) {
       setIsVipMember(true);
