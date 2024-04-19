@@ -33,7 +33,7 @@ export default function OrderViewHeader({
     order?.payment_status,
   );
   const { userTomxu } = useUserTomxu();
-  console.log(order);
+
   function openModalOTP() {
     if (userTomxu > order.total_tomxu) {
       action(true);

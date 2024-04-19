@@ -19,6 +19,7 @@ const routes = {
   password: '/password',
   feed: '/feed',
   wallet: '/wallet',
+
   followedShop: '/followed-authors',
   orderUrl: (tracking_number: string) =>
     `/orders/${encodeURIComponent(tracking_number)}`,

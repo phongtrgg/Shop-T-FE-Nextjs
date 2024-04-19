@@ -134,7 +134,7 @@ export function useGetPaymentIntent({
     {
       enabled: false,
       onSuccess: (item) => {
-        console.log('item', item);
+  
         let data: any = '';
         if (isArray(item)) {
           data = { ...item };
