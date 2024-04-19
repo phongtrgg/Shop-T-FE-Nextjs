@@ -19,6 +19,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useAuth from '@/components/auth/use-auth';
 import { setAuthCredentials } from '@/data/client/token.utils';
 import { useState, useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { checkIsVipMember } from '@/lib/constants/index';
+import { useMe } from '@/data/user';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
@@ -63,7 +66,7 @@ function Products() {
       ...(query.price && { price: query.price }),
       sortedBy: 'DESC',
     });
-  console.log(products);
+
   return (
     <Grid
       products={products}
@@ -83,6 +86,14 @@ const Home: NextPageWithLayout = () => {
   const [isLogin, setIsLogin] = useState(false);
   const tokenApp = query.tokenapp as string;
   const hashTokenShop = query.hashtokenshop as string;
+  const { me } = useMe();
+  const [IsVipMember, setIsVipMember] = useAtom(checkIsVipMember);
+  useEffect(() => {
+    if (me?.package_id === 2 || me?.package_id === 4) {
+      setIsVipMember(true);
+    }
+  }, [me]);
+
   const { data, isLoading, error } = useQuery<any>(
     [API_ENDPOINTS.ACCOUNT, { tokenApp, hashTokenShop }],
     () =>
@@ -113,12 +124,11 @@ const Home: NextPageWithLayout = () => {
         description="Tomiru E-COMMERCE"
         url={routes.home}
       />
-      {isLogin === true && (
-        <>
-          <CategoryFilter />
-          <Products />
-        </>
-      )}
+
+      <>
+        <CategoryFilter />
+        <Products />
+      </>
     </>
   );
 };

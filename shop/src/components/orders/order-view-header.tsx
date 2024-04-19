@@ -41,6 +41,7 @@ export default function OrderViewHeader({
       toast.error('Số dư ví của quý khách không đủ');
     }
   }
+
   return (
     <div className={cn(`bg-[#F7F8FA] dark:bg-[#333333] ${wrapperClassName}`)}>
       <div className="text-heading mb-0 flex flex-col flex-wrap items-center gap-x-8 text-base font-bold sm:flex-row md:flex-nowrap">
@@ -90,14 +91,15 @@ export default function OrderViewHeader({
                 order={order}
               />
             )} */}
-          {order?.payment_gateway === 'TOMXU' && (
-            <Button
-              className="w-full text-13px md:px-3 bg-orange-400 rounded-full hover:opacity-80 hover:bg-orange-400 active:bg-orange-400 active:scale-105"
-              onClick={openModalOTP}
-            >
-              {t('text-pay-now')}
-            </Button>
-          )}
+          {order?.payment_gateway === 'TOMXU' &&
+            order?.payment_status !== 'payment-success' && (
+              <Button
+                className="w-full text-13px md:px-3 bg-orange-400 rounded-full hover:opacity-80 hover:bg-orange-400 active:bg-orange-400 active:scale-105"
+                onClick={openModalOTP}
+              >
+                {t('text-pay-now')}
+              </Button>
+            )}
         </span>
         {/* ) : null} */}
         {settings?.paymentGateway?.length > 1 && isPaymentActionPending && (

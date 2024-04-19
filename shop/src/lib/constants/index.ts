@@ -49,3 +49,5 @@ export const AuthorizedMenuItems = [
   //   path: routes.password,
   // },
 ];
+
+export const checkIsVipMember = atom(false);
