@@ -15,8 +15,11 @@ import { fadeInBottomWithScaleX } from '@/lib/framer-motion/fade-in-bottom';
 import { isFree } from '@/lib/is-free';
 import { useTranslation } from 'next-i18next';
 import { ExternalIcon } from '@/components/icons/external-icon';
+import { checkIsVipMember } from '@/lib/constants';
+import { useAtom } from 'jotai';
 
 export default function Card({ product }: { product: Product }) {
+  const [IsVipMember] = useAtom(checkIsVipMember);
   const { name, slug, image, shop, is_external } = product ?? {};
   const { openModal } = useModalAction();
   const { isGridCompact } = useGridSwitcher();
@@ -145,7 +148,7 @@ export default function Card({ product }: { product: Product }) {
         <div className="flex items-center justify-between">
           <p className="text-brand">Giá dành cho thành viên Tomiru</p>
           <span className="  px-1.5 py-0.5 text-13px font-semibold uppercase text-brand ">
-            {salePrice}
+            {IsVipMember ? salePrice : price}
           </span>
         </div>
       </div>

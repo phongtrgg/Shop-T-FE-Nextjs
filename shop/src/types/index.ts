@@ -222,6 +222,8 @@ export interface User {
   last_name: string;
   first_name: string;
   phone?: string;
+
+  package_id?: number;
 }
 
 export interface UpdateProfileInput {
