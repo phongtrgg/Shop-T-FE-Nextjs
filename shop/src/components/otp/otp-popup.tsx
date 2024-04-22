@@ -72,7 +72,7 @@ const OTPpopup = (props: any) => {
     e.preventDefault();
     if (otpValue.length === 0 && !changeOption) {
       sendError('vui lòng không để trống thông tin');
-      return toast.error(<b>{t('text-profile-page-error-toast')}</b>);
+      return toast.error(<b>{t('Vui lòng nhập OTP')}</b>);
     }
     if (!changeOption) {
       const sendData = {
