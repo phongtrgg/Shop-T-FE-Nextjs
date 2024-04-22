@@ -32,7 +32,7 @@ export const SearchProvider: FC<{
       searchTerm,
       updateSearchTerm,
     }),
-    [searchTerm]
+    [searchTerm],
   );
 
   return <SearchContext.Provider value={value} {...props} />;

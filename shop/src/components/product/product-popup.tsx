@@ -108,8 +108,8 @@ export default function ProductPopupDetails() {
                 className="react-editor-description pb-5 leading-[1.9em] rtl:text-right dark:text-light-600 xl:pb-6 3xl:pb-8"
                 dangerouslySetInnerHTML={{
                   __html:
-                    content?.length > 200
-                      ? content?.substring(0, 200) + '...'
+                    content?.length > 300
+                      ? content?.substring(0, 300) + '...'
                       : content,
                 }}
               />

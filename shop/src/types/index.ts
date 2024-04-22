@@ -82,6 +82,7 @@ export interface QuestionQueryOptions extends QueryOptions {
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   authorization?: boolean;
+  
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
