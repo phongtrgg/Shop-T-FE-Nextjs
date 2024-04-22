@@ -41,9 +41,9 @@ export default function LoginUserForm() {
   const onSubmit: SubmitHandler<LoginUserInput> = (data) => {
     login(data);
   };
-  useEffect(() => {
-    window.location.href = process.env.NEXT_PUBLIC_APP_TOMIRU_URL as string;
-  }, []);
+  // useEffect(() => {
+  //   window.location.href = process.env.NEXT_PUBLIC_APP_TOMIRU_URL as string;
+  // }, []);
   return (
     <div className="bg-light px-6 pt-10 pb-8 dark:bg-dark-300 sm:px-8 lg:p-12">
       <RegisterBgPattern className="absolute bottom-0 left-0 text-light dark:text-dark-300 dark:opacity-60" />

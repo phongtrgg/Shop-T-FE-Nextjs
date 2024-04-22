@@ -9,8 +9,6 @@ import ItemNotFound from '@/components/ui/item-not-found';
 import rangeMap from '@/lib/range-map';
 import { staggerTransition } from '@/lib/framer-motion/stagger-transition';
 import { useTranslation } from 'next-i18next';
-import { useMe } from '@/data/user';
-import { useEffect, useState } from 'react';
 
 interface GridProps {
   products: Product[];
@@ -40,8 +38,6 @@ export default function Grid({
       />
     );
   }
-  const { me } = useMe();
-  const [isVIPmember, setIsVIPmember] = useState(false);
 
   return (
     <div className="w-full px-4 pt-5 pb-9 md:px-6 md:pb-10 md:pt-6 lg:px-7 lg:pb-12 3xl:px-8">
