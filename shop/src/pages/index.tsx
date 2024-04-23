@@ -113,9 +113,6 @@ const Home: NextPageWithLayout = () => {
     if (isLogin) {
       push('/');
     }
-    //  else {
-    //   window.location.href = process.env.NEXT_PUBLIC_APP_TOMIRU_URL as string;
-    // }
   }, [isLogin]);
 
   return (
