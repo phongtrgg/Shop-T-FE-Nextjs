@@ -22,7 +22,7 @@ const RatingsBadge: React.FC<RatingProps> = ({
           'px-3 py-0.5 text-base': variant === 'small',
           'px-6 py-2 text-2xl font-semibold': variant === 'large',
         },
-        className
+        className,
       )}
       {...props}
     >
